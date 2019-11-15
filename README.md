@@ -13,3 +13,8 @@ _N.B., commits to `master` will be live on OpenFn.org._
    updates to a lookup table on ODK X, CommCare, or something that's built for
    more two-way communication between the `Digital Registry` and the `Data Collection`
    tool.
+
+## Resources
+
+1. https://mifosforge.jira.com/wiki/spaces/docs/pages/82706605/Manage+Hooks
+2. https://gitlab.com/groups/dial/t4d-product-backlog/-/epics/4
