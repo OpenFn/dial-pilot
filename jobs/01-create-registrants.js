@@ -7,11 +7,16 @@
 // =============================================================================
 // Create records via iHRIS api, with the hostUrl, port, and authentication
 // handled by the credential ===================================================
-post('/registrants', {
-  headers: { 'content-type': 'json' },
-  body: {
-    msisdn: state.data.phoneNumber,
-    name: `${state.data.firstName} ${state.data.lastName}`,
-    gender: state.data.sex,
+post('/manage/person', {
+  formData: {
+    'form[person][0][0][fields][id]': 'person|0',
+    'form[person][0][0][fields][surname]': 'something',
+    'form[person][0][0][fields][firstname]': 'firsty',
+    'form[person][0][0][fields][othername]': 'othery',
+    'form[person][0][0][fields][nationality]': 'country|AS',
+    'form[person][0][0][fields][residence]': 'district|3',
+    'ajax_list_form[person][0][0][fields][residence][country]': 'country|UG',
+    'ajax_list_form[person][0][0][fields][residence][district]': 'district|3',
+    'ajax_list_form[person][0][0][fields][residence][county]': '',
   },
 });
