@@ -4,7 +4,7 @@ module.exports = {
     'no-console': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'no-param-reassign': ['error', { props: false }],
-    'comma-dangle': ['error', 'never']
+    'comma-dangle': ['error', 'never'],
   },
   globals: {
     alterState: 'readonly',
@@ -13,13 +13,8 @@ module.exports = {
     fields: 'readonly',
     dataValue: 'readonly',
     dataPath: 'readonly',
-    create: 'readonly',
-    update: 'readonly',
-    upsert: 'readonly',
-    relationship: 'readonly',
-    createIf: 'readonly',
-    bulk: 'readonly',
+    post: 'readonly',
     each: 'readonly',
-    combine: 'readonly'
-  }
+    combine: 'readonly',
+  },
 };

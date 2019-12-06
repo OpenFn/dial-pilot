@@ -5,18 +5,35 @@
 // -----------------------------------------------------------------------------
 
 // =============================================================================
-// Create records via iHRIS api, with the hostUrl, port, and authentication
-// handled by the credential ===================================================
-post('/manage/person', {
-  formData: {
+// Pluck out parts of the ODK submission and prepare our 'person' object that we
+// will use in multiple requests to iHRIS. =====================================
+alterState(state => {
+  state.person = {
     'form[person][0][0][fields][id]': 'person|0',
-    'form[person][0][0][fields][surname]': 'something',
-    'form[person][0][0][fields][firstname]': 'firsty',
-    'form[person][0][0][fields][othername]': 'othery',
+    'form[person][0][0][fields][surname]': state.data.lastName,
+    'form[person][0][0][fields][firstname]': state.data.firstName,
+    'form[person][0][0][fields][othername]': state.data.other,
     'form[person][0][0][fields][nationality]': 'country|AS',
     'form[person][0][0][fields][residence]': 'district|3',
-    'ajax_list_form[person][0][0][fields][residence][country]': 'country|UG',
-    'ajax_list_form[person][0][0][fields][residence][district]': 'district|3',
-    'ajax_list_form[person][0][0][fields][residence][county]': '',
-  },
+  };
+  return state;
 });
+
+// =============================================================================
+// Create records via iHRIS api, with the hostUrl, port, and authentication
+// handled by the credential ===================================================
+post(
+  '/manage/person',
+  {
+    formData: state => {
+      state.person.submit_type = 'confirm';
+      return state.person;
+    },
+  },
+  post('/manage/person', {
+    formData: state => {
+      state.person.submit_type = 'save';
+      return state.person;
+    },
+  })
+);
