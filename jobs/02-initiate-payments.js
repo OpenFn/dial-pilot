@@ -16,16 +16,44 @@ get(
     post(
       state.configuration.mifosUrl,
       {
-        headers: { 'content-type': 'json' },
         authentication: state.configuration.mifosAuth,
-        body: state.data.registrants.map(r => {
-          console.log(`Initiating payment for ${r.name}.`);
-          return {
-            payer: { msisdn: state.configuration.mifosAcct },
-            payee: { msisdn: r.phone },
-            amount: r.amount,
-          };
-        }),
+        headers: {
+          'content-type': 'application/json',
+          'X-Tenant-Identifier': 'tn03',
+        },
+        // Can we send an array of payments to make in a single request?
+        // body: state.data.registrants.map(r => {
+        //   console.log(`Initiating payment for ${r.name}.`);
+        //   return {
+        //     payer: { msisdn: state.configuration.mifosAcct },
+        //     payee: { msisdn: r.phone },
+        //     amount: r.amount,
+        //   };
+        // }),
+        body: {
+          payer: {
+            partyIdInfo: {
+              partyIdType: 'MSISDN',
+              partyIdentifier: '27710203999',
+            },
+          },
+          payee: {
+            partyIdInfo: {
+              partyIdType: 'MSISDN',
+              partyIdentifier: state.data.employeePhoneNumber,
+            },
+          },
+          amountType: 'SEND',
+          transactionType: {
+            scenario: 'PAYMENT',
+            initiator: 'PAYER',
+            initiatorType: 'CONSUMER',
+          },
+          amount: {
+            currency: 'USD',
+            amount: 100,
+          },
+        },
       },
       state => {
         // =====================================================================
