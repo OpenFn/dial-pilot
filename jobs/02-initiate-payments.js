@@ -60,10 +60,18 @@ get(
         // Create "initiated" payments in iHRIS with their mifos external IDs ==
         post(state.configuration.ihrisUrl, {
           authentication: state.configuration.ihrisAuth,
-          body: {
-            status: 'initiated',
-            mifosTxId: state.response.txId,
-            dateInitiated: state.response.timestamp,
+          formData: {
+            'form[person_payments][0][0][fields][id]': 'person_payments|0',
+            'form[person_payments][0][0][fields][parent]': state.data.personId,
+            'form[person_ payments][0][0][fields][date][day]': state.data.day,
+            'form[person_ payments][0][0][fields][date][month]':
+              state.data.month,
+            'form[person_ payments][0][0][fields][date][year]': state.data.year,
+            'form[person_payments][0][0][fields][amount]': state => {
+              console.log('Do some calculation in here?');
+              return state.data.salary / 12;
+            },
+            'form[person_payments][0][0][fields][status]': 'initiated',
           },
         });
         return state;
