@@ -1,4 +1,7 @@
 sqlString(state => {
+  // select person_position records
+  
+  // get phone number records 
   return 'SELECT id, start_date FROM hippo_person_position';
   // + `WHERE start_date = '${new Date().toString()}' and age(last_payment_date) > '30 days'`
 });
