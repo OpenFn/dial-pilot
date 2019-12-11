@@ -1,0 +1,35 @@
+{
+  "__query_params": {},
+  "content": "record",
+  "data": [
+    {
+      "*meta-date-marked-as-complete*": "2019-12-07T01:20:45.311Z",
+      "*meta-instance-id*": "uuid:9aedb753-d86e-4d54-9cbd-9c29ba09a464",
+      "*meta-is-complete*": true,
+      "*meta-model-version*": 20191202,
+      "*meta-submission-date*": "2019-12-07T01:20:45.311Z",
+      "*meta-ui-version*": null,
+      "county": "county_b",
+      "dob": "2019-09-03",
+      "estimated_dob": "yes",
+      "exact_location:Accuracy": 5.36,
+      "exact_location:Altitude": 250.3327026367,
+      "exact_location:Latitude": 39.92445449,
+      "exact_location:Longitude": -86.34167983,
+      "first_name": "Testarius",
+      "gender": "male",
+      "instanceID": "uuid:9aedb753-d86e-4d54-9cbd-9c29ba09a464",
+      "last_name": "Kungu",
+      "middle_name": "Paul",
+      "phone_number": "416-678-8990",
+      "position": "position_b",
+      "position_facility": "facility_c",
+      "region": "Indianapolis",
+      "start_date": "2019-12-01",
+      "village": "Indiana"
+    }
+  ],
+  "formId": "registrion_form",
+  "formVersion": "20191202",
+  "token": ""
+}

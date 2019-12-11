@@ -10,10 +10,10 @@
 alterState(state => {
   state.person = {
     'form[person][0][0][fields][id]': 'person|0',
-    'form[person][0][0][fields][surname]': state.data.lastName,
-    'form[person][0][0][fields][firstname]': state.data.firstName,
-    'form[person][0][0][fields][othername]': state.data.other,
-    'form[person][0][0][fields][nationality]': 'country|AS',
+    'form[person][0][0][fields][surname]': state.data.data[0].last_name,
+    'form[person][0][0][fields][firstname]': state.data.data[0].first_name,
+    'form[person][0][0][fields][othername]': state.data.data[0].middle_name,
+    'form[person][0][0][fields][nationality]': `country|${state.data.data[0].region}`,
     'form[person][0][0][fields][residence]': 'district|3',
   };
   return state;
