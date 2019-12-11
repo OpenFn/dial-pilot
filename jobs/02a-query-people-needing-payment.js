@@ -5,6 +5,6 @@ sqlString(state => {
 
 alterState(state => {
   // Note: we pluck out on the 'RowDataResponses' from the SQL server.
-  state.records = state.response.body.filter(x => x.id !== undefined);
+  state.data.records = state.response.body.filter(x => x.id !== undefined);
   return state;
 });
