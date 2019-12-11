@@ -35,6 +35,8 @@ post(
       state.person.submit_type = 'save';
       return state.person;
     },
-    successCodes: [302],
+    options: {
+      successCodes: [302],
+    },
   })
 );
