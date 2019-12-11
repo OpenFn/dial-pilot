@@ -8,6 +8,7 @@ module.exports = {
   },
   globals: {
     alterState: 'readonly',
+    sqlString: 'readonly',
     execute: 'readonly',
     field: 'readonly',
     fields: 'readonly',
