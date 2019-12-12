@@ -1,9 +1,7 @@
 
 sqlString(state => {
-
-  // get phone number records 
-  return 'SELECT id, start_date FROM hippo_person_position';
-  // + `WHERE start_date = '${new Date().toString()}' and age(last_payment_date) > '30 days'`
+  // stored procedure will return a list of names, phone numbers (MSISDN), and salary info for employees that should be paid today
+  return 'CALL get_employees_to_pay();';
 });
 
 alterState(state => {
