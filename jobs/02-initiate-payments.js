@@ -48,7 +48,7 @@ each(
           },
           amount: {
             currency: 'USD',
-            amount: 100,
+            amount: state.data.salary / 12,
           },
         };
       },
