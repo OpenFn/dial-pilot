@@ -16,6 +16,9 @@ alterState(state => {
     'form[person][0][0][fields][nationality]': `country|${state.data.data[0].region}`,
     'form[person][0][0][fields][residence]': 'district|3',
   };
+  state.person_position = {
+    
+  };
   return state;
 });
 
