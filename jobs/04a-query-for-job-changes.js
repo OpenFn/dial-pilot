@@ -8,6 +8,7 @@ sqlString(state => {
 // });
 
 // QUESTION: Should we wait to do this update until after we've done things in Mifos?
+//   SC: This is the job that runs when a new position is created in iHRIS, so no Mifos calls needed
 // sqlString(state => {
 //   // stored procedure will return a list of names, phone numbers (MSISDN), and salary info for employees that should be paid today
 //   return `UPDATE position_updates SET status='PROCESSED' WHERE status='NEW'`;
