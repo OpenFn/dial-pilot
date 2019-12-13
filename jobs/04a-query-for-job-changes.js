@@ -2,10 +2,10 @@ sqlString(state => {
   return "SELECT position, facility, status FROM position_updates WHERE status='NEW';";
 });
 
-alterState(state => {
-  state.data.open_positions = JSON.parse(JSON.stringify(state.response.body));
-  return state;
-});
+// alterState(state => {
+//   state.data.open_positions = JSON.parse(JSON.stringify(state.response.body));
+//   return state;
+// });
 
 // QUESTION: Should we wait to do this update until after we've done things in Mifos?
 // sqlString(state => {
