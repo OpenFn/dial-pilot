@@ -1,15 +1,14 @@
 sqlString(state => {
-  // stored procedure will return a list of names, phone numbers (MSISDN), and salary info for employees that should be paid today
-  return `SELECT position, facility, status FROM position_updates WHERE status='NEW'`;
+  return "SELECT position, facility, status FROM position_updates WHERE status='NEW';";
 });
 
-alterState(state => {
-  // Note: we pluck out on the 'RowDataResponses' from the SQL server.
-  state.data.open_positions = state.response.body.filter(x => x.id !== undefined);
-  return state;
-});
+// alterState(state => {
+//   state.data.open_positions = JSON.parse(JSON.stringify(state.response.body));
+//   return state;
+// });
 
-sqlString(state => {
-  // stored procedure will return a list of names, phone numbers (MSISDN), and salary info for employees that should be paid today
-  return `UPDATE position_updates SET status='PROCESSED' WHERE status='NEW'`;
-});
+// QUESTION: Should we wait to do this update until after we've done things in Mifos?
+//   SC: This is the job that runs when a new position is created in iHRIS, so no Mifos calls needed (sorry the comment below was misleading)
+// sqlString(state => {
+//   return `UPDATE position_updates SET status='PROCESSED' WHERE status='NEW'`;
+// });
