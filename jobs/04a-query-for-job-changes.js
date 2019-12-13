@@ -1,15 +1,9 @@
-sqlString(
-  state =>
-    "SELECT position, facility, status FROM position_updates WHERE status='NEW'"
-);
+sqlString(state => {
+  return "SELECT position, facility, status FROM position_updates WHERE status='NEW';";
+});
 
 alterState(state => {
-  console.log(state.response.body);
-
-  // Note: we pluck out on the 'RowDataResponses' from the SQL server.
-  state.data.open_positions = state.response.body.filter(
-    x => x.position !== undefined
-  );
+  state.data.open_positions = JSON.parse(JSON.stringify(state.response.body));
   return state;
 });
 
