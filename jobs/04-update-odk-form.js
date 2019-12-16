@@ -10,6 +10,7 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
 
+    console.log('Template: ', template);
     let indexOfVersion = template.lastIndexOf('version');
     // find the version code.
     console.log(indexOfVersion);
