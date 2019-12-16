@@ -5,16 +5,15 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
     console.log('Returned state:', state.response.body);
     let template = state.response.body.toString();
     
-    template = template.toString().replace('20191220', '20191221');
-    
-    let formString = template.toString();
-    console.log('Replace: ', formString.replace);
-    console.log('CharAt: ', formString.charAt);
-    
     let boundary = '--------------------------';
     for (var i = 0; i < 24; i++) {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
+
+    const versionEx = /id=\S+ version="(\S+)"/;
+    const matches = template.exec(versionEx);
+    console.log("Matches: ", matches);
+    console.log("Matches Length: ", matches.length);
 
     post('http://167.71.88.252/formUpload', {
       headers: {
