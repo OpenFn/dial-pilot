@@ -5,6 +5,8 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
     console.log('Returned state:', state.response.body);
     let template = state.response.body.toString();
     
+    template = template.toString().replace('20191220', '20191221');
+    
     let boundary = '--------------------------';
     for (var i = 0; i < 24; i++) {
       boundary += Math.floor(Math.random() * 10).toString(16);
