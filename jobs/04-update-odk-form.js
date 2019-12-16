@@ -20,17 +20,9 @@ get(
     const positionMatches = template.match(positionEx);
     template = template.replace(positionEx, '');
 
-    console.log('Remove select:');
-    console.log(template);
-
     const selectEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
     const selectMatches = template.match(selectEx);
     template = template.replace(selectEx, selectMatches[0] + positionMatches[0]);
-
-    console.log('Add select:');
-    console.log(selectMatches);
-    console.log(template);
-
 
     post(
       'http://167.71.88.252/formUpload',
