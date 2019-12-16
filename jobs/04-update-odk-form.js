@@ -12,12 +12,16 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
     
     let indexOfVersion = template.lastIndexOf('version');
     // find the version code.
-    while(template.charAt(indexOfVersion) < '0' || template.charAt(indexOfVersion) > '9'  && indexOfVersion < template.length) {
+    while(template.substring(indexOfVersion, indexOfVersion + 1) < '0'
+          || template.substring(indexOfVersion, indexOfVersion + 1) > '9'
+          && indexOfVersion < template.length) {
       indexOfVersion = indexOfVersion + 1;
     }
 
     let currentVersion = '';
-    while(template.charAt(indexOfVersion) >= '0' && template.charAt(indexOfVersion) <= '9' && indexOfVersion < template.length) {
+    while(template.substring(indexOfVersion, indexOfVersion + 1) >= '0'
+          && template.substring(indexOfVersion, indexOfVersion + 1) <= '9'
+          && indexOfVersion < template.length) {
       currentVersion = currentVersion + template.charAt(indexOfVersion);
       indexOfVersion = indexOfVersion + 1;
     }
