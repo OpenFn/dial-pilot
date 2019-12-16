@@ -22,7 +22,7 @@ get(
     template = template.replace(currentVersion, currentVersion + 1);
 
     try {
-      post(
+      get(
         'http://167.71.88.252/formUpload',
         {
           formData: {
