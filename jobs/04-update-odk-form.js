@@ -1,7 +1,4 @@
 // Your job goes here.
-const template = results.data;
-const $ = _cheerio.load(template, {xmlMode: true});
-
 console.log('State:', state.response.body);
 get('http://167.71.88.252/formXml?formId=registrion_form', {
   callback: function (state) {
