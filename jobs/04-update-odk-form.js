@@ -1,6 +1,8 @@
 // Your job goes here.
 console.log('State:', state.response.body);
-get('http://167.71.88.252/formXml', {
+get(
+  'http://167.71.88.252/formXml',
+  {
     query: {
       formId: 'registrion_form'
     }
@@ -13,13 +15,15 @@ get('http://167.71.88.252/formXml', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
 
-    const versionEx = /id="\S+"\s+version="(\S+)"/
+    const versionEx = /id="\S+"\s+version="(\S+)"/;
     const matches = template.match(versionEx);
 
     const currentVersion = Number.parseInt(matches[1]);
-    template = template.replace(currentVersion, currentVersion + 1)
+    template = template.replace(currentVersion, currentVersion + 1);
 
-    post('http://167.71.88.252/formUpload', {
+    post(
+      'http://167.71.88.252/formUpload',
+      {
         headers: {
           'content-type': 'multipart/form-data; boundary=' + boundary
         },
@@ -28,7 +32,7 @@ get('http://167.71.88.252/formXml', {
         },
       },
       function(state) {
-        console.log(state)
+        console.log(state);
       }
     );
   }
