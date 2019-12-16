@@ -2,7 +2,7 @@
 // will use in multiple requests to iHRIS. =====================================
 alterState(state => {
   // The position field in the form holds the position ID and the salary
-  const positionData = state.data.data[0].position.split(',');
+  const positionData = state.data.data[0].position.split('_');
   const startDateComponents = state.data.data[0].start_date.split('-')
   state.person_position = {
     'form[person_position][0][0][fields][id]': 'person_position|0',
