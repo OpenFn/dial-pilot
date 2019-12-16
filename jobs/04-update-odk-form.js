@@ -12,21 +12,7 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
 
     let indexOfVersion = template.lastIndexOf('version');
     // find the version code.
-    while(template.charAt(indexOfVersion) < '0'
-          || template.charAt(indexOfVersion) > '9'
-          && indexOfVersion < template.length) {
-      indexOfVersion = indexOfVersion + 1;
-    }
-
-    let currentVersion = '';
-    while(template.charAt(indexOfVersion) >= '0'
-          && template.charAt(indexOfVersion) <= '9'
-          && indexOfVersion < template.length) {
-      currentVersion = currentVersion + template.charAt(indexOfVersion);
-      indexOfVersion = indexOfVersion + 1;
-    }
-
-    console.log('Current version: ', currentVersion);
+    console.log(indexOfVersion);
 
     post('http://167.71.88.252/formUpload', {
       headers: {
