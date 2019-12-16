@@ -11,7 +11,7 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
     }
 
     const versionEx = /id=\S+ version="(\S+)"/;
-    const matches = template.exec(versionEx);
+    const matches = template.match(versionEx);
     console.log("Matches: ", matches);
     console.log("Matches Length: ", matches.length);
 
