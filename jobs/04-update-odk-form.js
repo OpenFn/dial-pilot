@@ -10,9 +10,11 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
     
-    const version = /id=\S+ version="(\S+)"/
+    const version = /id=\S+ version="(\S+)"/;
     const matches = version.exec(template);
-    const currentVersion = Number.parseInt(matches[1])
+    console.log(matches);
+    
+    const currentVersion = Number.parseInt(matches[1]);
     
     template = template.replace(matches[1], currentVersion + 1);
 
