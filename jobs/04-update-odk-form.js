@@ -28,7 +28,7 @@ get(
       'http://167.71.88.252/formUpload',
       {
         formData: {
-          form_def_file: state.template
+          form_def_file: template
         }
       },
       function(state) {
