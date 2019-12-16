@@ -1,6 +1,8 @@
 // Your job goes here.
 console.log('State:', state.response.body);
-get('http://167.71.88.252/formXml', {
+get(
+  'http://167.71.88.252/formXml',
+  {
     query: {
       formId: 'registrion_form'
     }
@@ -20,10 +22,9 @@ get('http://167.71.88.252/formXml', {
     template = template.replace(currentVersion, currentVersion + 1);
 
     try {
-      post('http://167.71.88.252/formUpload', {
-          headers: {
-            'content-type': 'multipart/form-data; boundary=' + boundary
-          },
+      post(
+        'http://167.71.88.252/formUpload',
+        {
           formData: {
             'form_def_file': template
           },
@@ -32,6 +33,7 @@ get('http://167.71.88.252/formXml', {
           console.log(state);
         }
       );
+      console.log('Done');
     } catch (error) {
       console.log(error);
     }
