@@ -1,7 +1,8 @@
 // Your job goes here.
 console.log('State:', state.response.body);
-get('http://167.71.88.252/formXml?formId=registrion_form', {
-  callback: function (state) {
+get('http://167.71.88.252/formXml?formId=registrion_form',
+  {},
+  function (state) {
     console.log('Returned state:', state.response.body);
     let template = state.response.body.toString();
     
@@ -10,8 +11,6 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
 
-    console.log('Template: ', template);
-    console.log('Template: ', template.toString());
     let indexOfVersion = template.lastIndexOf('version');
     // find the version code.
     console.log(indexOfVersion);
@@ -28,4 +27,4 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       }
     });
   }
-});
+);
