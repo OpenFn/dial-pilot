@@ -11,6 +11,7 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
     }
 
     console.log('Template: ', template);
+    console.log('Template: ', template.toString());
     let indexOfVersion = template.lastIndexOf('version');
     // find the version code.
     console.log(indexOfVersion);
