@@ -7,7 +7,7 @@ get('http://167.71.88.252/formXml', {
   },
   function (state) {
     console.log('Returned state:', state.data.body);
-    let template = state.response.body.toString();
+    let template = state.data.body;
     
     let boundary = '--------------------------';
     for (var i = 0; i < 24; i++) {
@@ -17,7 +17,6 @@ get('http://167.71.88.252/formXml', {
     let indexOfVersion = template.lastIndexOf('version');
     // find the version code.
     console.log(indexOfVersion);
-    console.log('Current version: ', currentVersion);
 
     post('http://167.71.88.252/formUpload', {
       headers: {
