@@ -10,6 +10,7 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
     
+    console.log('String:', String);
     console.log('Substr:', template.substr);
     console.log('Substring:', template.substring);
     console.log('Replace:', template.replace);
