@@ -1,6 +1,4 @@
 // Your job goes here.
-const cheerio = require('cheerio');
-
 get('http://167.71.88.252/formXml?formId=registrion_form', {
   callback: function (state) {
     const template = state.data.data;
