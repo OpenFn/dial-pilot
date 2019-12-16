@@ -21,21 +21,24 @@ get(
     const currentVersion = Number.parseInt(matches[1]);
     template = template.replace(currentVersion, currentVersion + 1);
 
-    try {
-      get(
-        'http://167.71.88.252/formUpload',
-        {
-          formData: {
-            form_def_file: template
-          }
-        },
-        function(state) {
-          console.log(state);
-        }
-      );
-      console.log('Done');
-    } catch (error) {
-      console.log(error);
+    alterState(state => {
+      state.template = template;
+      return state;
+    });
+  }
+);
+
+console.log('Template:');
+console.log(state.template);
+
+post(
+  'http://167.71.88.252/formUpload',
+  {
+    formData: {
+      form_def_file: state.template
     }
+  },
+  function(state) {
+    console.log(state);
   }
 );
