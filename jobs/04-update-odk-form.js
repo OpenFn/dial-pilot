@@ -2,15 +2,14 @@
 console.log('State:', state.response.body);
 get('http://167.71.88.252/formXml?formId=registrion_form', {
   callback: function (state) {
-    console.log('Returned state:', state);
+    console.log('Returned state:', state.response.body);
     const template = state.response.body;
-
-    const formData = new FormData();
-    formData.append('form_def_file', template, 'registration_form.xml');
 
     post('http://167.71.88.252/formUpload', {
       headers: formData.getHeaders(),
-      formData: formData,
+      formData: {
+        'form_def_file': template
+      },
     });
   }
 });
