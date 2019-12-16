@@ -10,17 +10,21 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
     
+    console.log('Substr:', template.substr);
+    console.log('Substring:', template.substring);
+    console.log('Replace:', template.replace);
+    
     let indexOfVersion = template.lastIndexOf('version');
     // find the version code.
-    while(template.substring(indexOfVersion, indexOfVersion + 1) < '0'
-          || template.substring(indexOfVersion, indexOfVersion + 1) > '9'
+    while(template.substr(indexOfVersion, indexOfVersion + 1) < '0'
+          || template.substr(indexOfVersion, indexOfVersion + 1) > '9'
           && indexOfVersion < template.length) {
       indexOfVersion = indexOfVersion + 1;
     }
 
     let currentVersion = '';
-    while(template.substring(indexOfVersion, indexOfVersion + 1) >= '0'
-          && template.substring(indexOfVersion, indexOfVersion + 1) <= '9'
+    while(template.substr(indexOfVersion, indexOfVersion + 1) >= '0'
+          && template.substr(indexOfVersion, indexOfVersion + 1) <= '9'
           && indexOfVersion < template.length) {
       currentVersion = currentVersion + template.charAt(indexOfVersion);
       indexOfVersion = indexOfVersion + 1;
