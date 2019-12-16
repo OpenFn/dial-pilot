@@ -16,7 +16,7 @@ get(
     const currentVersion = Number.parseInt(versionMatches[1]);
     template = template.replace(currentVersion, currentVersion + 1);
 
-    const positionEx = /\s+<label>[^<>]*<\/label>\s+<value>[^<>]*<\/value>\s+/gi;
+    const positionEx = /<item>\s+<label>[^<>]*<\/label>\s+<value>[^<>]*<\/value>\s+<\/item>/gi;
     const positionMatches = template.match(positionEx);
     template = template.replace(positionEx, '');
 
@@ -25,9 +25,9 @@ get(
 
     const selectEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
     const selectMatches = template.match(selectEx);
-    template = template.replace(selectEx, positionMatches[0]);
+    template = template.replace(selectEx, selectMatchs[0] + positionMatches[0]);
 
-    console.log('Add select:')
+    console.log('Add select:');
     console.log(selectMatches);
     console.log(template);
 
