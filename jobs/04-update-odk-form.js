@@ -1,7 +1,7 @@
 // Your job goes here.
 console.log('State:', state.response.body);
-get('http://167.71.88.252/formXml?formId=registrion_form', {
-  callback: function (state) {
+get('http://167.71.88.252/formXml?formId=registrion_form',
+  function (state) {
     console.log('Returned state:', state.data.body);
     let template = state.response.body.toString();
     
@@ -27,4 +27,4 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       }
     });
   }
-});
+);
