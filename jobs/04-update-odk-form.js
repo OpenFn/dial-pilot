@@ -6,7 +6,6 @@ get('http://167.71.88.252/formXml', {
     }
   },
   function (state) {
-    console.log('Returned state:', state.data.body);
     let template = state.data.body;
     
     let boundary = '--------------------------';
@@ -20,18 +19,17 @@ get('http://167.71.88.252/formXml', {
     const currentVersion = Number.parseInt(matches[1]);
     template = template.replace(currentVersion, currentVersion + 1)
 
-    console.log(template);
-
     post('http://167.71.88.252/formUpload', {
-      headers: {
-        'content-type': 'multipart/form-data; boundary=' + boundary
+        headers: {
+          'content-type': 'multipart/form-data; boundary=' + boundary
+        },
+        formData: {
+          'form_def_file': template
+        },
       },
-      formData: {
-        'form_def_file': template
-      },
-      options: {
-        successCodes: [201],
+      function(state) {
+        console.log(state)
       }
-    });
+    );
   }
 );
