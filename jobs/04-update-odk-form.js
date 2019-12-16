@@ -7,6 +7,10 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
     
     template = template.toString().replace('20191220', '20191221');
     
+    let formString = template.toString();
+    console.log('Replace: ', formString.replace);
+    console.log('CharAt: ', formString.charAt);
+    
     let boundary = '--------------------------';
     for (var i = 0; i < 24; i++) {
       boundary += Math.floor(Math.random() * 10).toString(16);
