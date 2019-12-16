@@ -20,6 +20,8 @@ get(
 
     const currentVersion = Number.parseInt(matches[1]);
     template = template.replace(currentVersion, currentVersion + 1);
+    
+    console.log(post);
 
     post(
       'http://167.71.88.252/formUpload',
