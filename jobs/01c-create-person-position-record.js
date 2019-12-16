@@ -12,7 +12,7 @@ alterState(state => {
     'form[person_position][0][0][fields][start_date][day]': startDateComponents[2],
     'form[person_position][0][0][fields][start_date][month]': startDateComponents[1],
     'form[person_position][0][0][fields][start_date][year]': startDateComponents[0],
-    'form[salary][0][0][fields][salary]': 'currency|3='+positionData[1]
+    //'form[salary][0][0][fields][salary]': 'currency|3='+positionData[1]
   };
   return state;
 });
