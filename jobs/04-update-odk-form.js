@@ -1,9 +1,9 @@
 // Your job goes here.
-console.log('State:', state);
+console.log('State:', state.response.body);
 get('http://167.71.88.252/formXml?formId=registrion_form', {
   callback: function (state) {
     console.log('Returned state:', state);
-    const template = state.data.data;
+    const template = state.response.body;
 
     const formData = new FormData();
     formData.append('form_def_file', template, 'registration_form.xml');
