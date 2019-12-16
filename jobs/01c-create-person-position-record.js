@@ -21,14 +21,14 @@ alterState(state => {
 // Create records via iHRIS api, with the hostUrl, port, and authentication
 // handled by the credential ===================================================
 post(
-  '/manage/person',
+  '/manage/make_offer',
   {
     formData: state => {
       state.person_position.submit_type = 'confirm';
       return state.person_position;
     },
   },
-  post('/manage/person', {
+  post('/manage/make_offer', {
     formData: state => {
       state.person_position.submit_type = 'save';
       return state.person_position;
