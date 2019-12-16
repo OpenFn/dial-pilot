@@ -3,17 +3,12 @@ console.log('State:', state.response.body);
 get('http://167.71.88.252/formXml?formId=registrion_form', {
   callback: function (state) {
     console.log('Returned state:', state.response.body);
-    let template = state.response.body;
+    let template = state.response.body.toString();
     
     let boundary = '--------------------------';
     for (var i = 0; i < 24; i++) {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
-    
-    console.log(typeof template);
-    console.log('Substr:', template.substr);
-    console.log('Substring:', template.substring);
-    console.log('Replace:', template.replace);
     
     let indexOfVersion = template.lastIndexOf('version');
     // find the version code.
