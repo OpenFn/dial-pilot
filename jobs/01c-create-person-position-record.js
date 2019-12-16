@@ -1,6 +1,6 @@
 // Pluck out parts of the ODK submission and prepare our 'person_postion' object that we
 // will use in multiple requests to iHRIS. =====================================
-console.log("State data: " + state.data.data[0])
+console.log("State data: " + JSON.stringify(state.data.data[0]))
 alterState(state => {
   // The position field in the form holds the position ID and the salary
   const positionData = state.data.data[0].position.split('_');
@@ -14,7 +14,7 @@ alterState(state => {
     'form[person_position][0][0][fields][start_date][year]': startDateComponents[0],
     'form[salary][0][0][fields][salary]': 'currency|3='+positionData[1]
   };
-  console.log("Person position: " + state.person_position)
+  console.log("Person position: " + JSON.stringify(state.person_position))
   return state;
 });
 
