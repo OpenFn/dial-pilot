@@ -1,7 +1,6 @@
 // Your job goes here.
-var cheerio = require('cheerio')
 const template = results.data;
-const $ = cheerio.load(template, {xmlMode: true});
+const $ = _cheerio.load(template, {xmlMode: true});
 
 console.log('State:', state.response.body);
 get('http://167.71.88.252/formXml?formId=registrion_form', {
