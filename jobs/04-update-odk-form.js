@@ -11,6 +11,9 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
     }
     
     console.log('String:', String);
+    for (const property in String) {
+      console.log('String props: ', property);
+    }
     console.log('Substr:', template.substr);
     console.log('Substring:', template.substring);
     console.log('Replace:', template.replace);
