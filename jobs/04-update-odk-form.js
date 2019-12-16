@@ -11,10 +11,26 @@ get(
     let template = state.data.body;
 
     const versionEx = /id="\S+"\s+version="(\S+)"/;
-    const matches = template.match(versionEx);
+    const versionMatches = template.match(versionEx);
 
-    const currentVersion = Number.parseInt(matches[1]);
+    const currentVersion = Number.parseInt(versionMatches[1]);
     template = template.replace(currentVersion, currentVersion + 1);
+
+    const positionEx = /\s+<label>[^<>]*<\/label>\s+<value>[^<>]*<\/value>\s+/gi;
+    const positionMatches = template.match(positionEx);
+    template = template.replace(positionEx, '');
+
+    console.log('Remove select:');
+    console.log(template);
+
+    const selectEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
+    const selectMatches = template.match(selectEx);
+    template = template.replace(selectEx, positionMatches[0]);
+
+    console.log('Add select:')
+    console.log(selectMatches);
+    console.log(template);
+
 
     post(
       'http://167.71.88.252/formUpload',
