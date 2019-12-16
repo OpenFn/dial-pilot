@@ -10,13 +10,19 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
     
-    const version = /id=\S+ version="(\S+)"/;
-    const matches = version.exec(template);
-    console.log(matches);
+    let indexOfVersion = template.lastIndexOf('version');
+    // find the version code.
+    while(template.charAt(indexOfVersion) < '0' || template.charAt(indexOfVersion) > '9'  && indexOfVersion < template.length) {
+      indexOfVersion = indexOfVersion + 1;
+    }
+
+    let currentVersion = '';
+    while(template.charAt(indexOfVersion) >= '0' && template.charAt(indexOfVersion) <= '9' && indexOfVersion < template.length) {
+      currentVersion = currentVersion + template.charAt(indexOfVersion);
+      indexOfVersion = indexOfVersion + 1;
+    }
     
-    const currentVersion = Number.parseInt(matches[1]);
-    
-    template = template.replace(matches[1], currentVersion + 1);
+    template = template.replace(currentVersion, Number.parseInt(currentVersion) + 1);
 
     post('http://167.71.88.252/formUpload', {
       headers: {
