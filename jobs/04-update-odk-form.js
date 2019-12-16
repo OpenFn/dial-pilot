@@ -14,9 +14,10 @@ get('http://167.71.88.252/formXml', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
 
-    let indexOfVersion = template.lastIndexOf('version');
-    // find the version code.
-    console.log(indexOfVersion);
+    const versionEx = /id="\S+"\s+version="(\S+)"/gi
+    const matches = template.match(versionEx);
+
+    console.log(matches);
 
     post('http://167.71.88.252/formUpload', {
       headers: {
