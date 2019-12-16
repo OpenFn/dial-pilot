@@ -25,7 +25,7 @@ get(
 
     const selectEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
     const selectMatches = template.match(selectEx);
-    template = template.replace(selectEx, selectMatchs[0] + positionMatches[0]);
+    template = template.replace(selectEx, selectMatches[0] + positionMatches[0]);
 
     console.log('Add select:');
     console.log(selectMatches);
