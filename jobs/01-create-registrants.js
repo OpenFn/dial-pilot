@@ -3,7 +3,7 @@
 // @credential 'ihris'
 // @adaptor 'http'
 // -----------------------------------------------------------------------------
-
+throw("e")
 // =============================================================================
 // Pluck out parts of the ODK submission and prepare our 'person' object that we
 // will use in multiple requests to iHRIS. =====================================
