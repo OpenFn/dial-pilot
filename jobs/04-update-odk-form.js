@@ -32,9 +32,8 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
     const formData = new FormData();
     formData.append('form_def_file', $.html(), 'registration_form.xml');
 
-    const formHeaders = formData.getHeaders();
     post('http://167.71.88.252/formUpload', {
-      headers: ...formHeaders,
+      headers: formData.getHeaders(),
       formData: formData,
     });
   }
