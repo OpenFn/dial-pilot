@@ -4,9 +4,16 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
   callback: function (state) {
     console.log('Returned state:', state.response.body);
     const template = state.response.body;
+    
+    var boundary = '--------------------------';
+    for (var i = 0; i < 24; i++) {
+      boundary += Math.floor(Math.random() * 10).toString(16);
+    }
 
     post('http://167.71.88.252/formUpload', {
-      headers: formData.getHeaders(),
+      headers: {
+        'content-type': 'multipart/form-data; boundary=' + boundary
+      },
       formData: {
         'form_def_file': template
       },
