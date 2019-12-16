@@ -34,9 +34,7 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
 
     const formHeaders = formData.getHeaders();
     post('http://167.71.88.252/formUpload', {
-      headers: {
-        ...formHeaders,
-      },
+      headers: ...formHeaders,
       formData: formData,
     });
   }
