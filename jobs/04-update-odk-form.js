@@ -3,12 +3,18 @@ console.log('State:', state.response.body);
 get('http://167.71.88.252/formXml?formId=registrion_form', {
   callback: function (state) {
     console.log('Returned state:', state.response.body);
-    const template = state.response.body;
+    let template = state.response.body;
     
-    var boundary = '--------------------------';
+    let boundary = '--------------------------';
     for (var i = 0; i < 24; i++) {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
+    
+    const version = /id=\S+ version="(\S+)"/
+    const matches = version.exec(template);
+    const currentVersion = Number.parseInt(matches[1])
+    
+    template = template.replace(matches[1], currentVersion + 1);
 
     post('http://167.71.88.252/formUpload', {
       headers: {
