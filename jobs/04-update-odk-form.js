@@ -10,6 +10,9 @@ get('http://167.71.88.252/formXml?formId=registrion_form', {
       formData: {
         'form_def_file': template
       },
+      options: {
+        successCodes: [201],
+      }
     });
   }
 });
