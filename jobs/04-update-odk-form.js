@@ -6,7 +6,6 @@ get('http://167.71.88.252/formXml', {
     }
   },
   function (state) {
-    console.log('Returned state:', state.data.body);
     let template = state.data.body;
     
     let boundary = '--------------------------';
@@ -14,7 +13,7 @@ get('http://167.71.88.252/formXml', {
       boundary += Math.floor(Math.random() * 10).toString(16);
     }
 
-    const versionEx = /id="\S+"\s+version="(\S+)"/gi
+    const versionEx = /id="\S+"\s+version="(\S+)"/
     const matches = template.match(versionEx);
 
     console.log(matches);
