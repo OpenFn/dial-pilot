@@ -6,6 +6,7 @@ get('http://167.71.88.252/formXml', {
     }
   },
   function (state) {
+    console.log('Returned state:', state.data.body);
     let template = state.data.body;
     
     let boundary = '--------------------------';
@@ -16,7 +17,10 @@ get('http://167.71.88.252/formXml', {
     const versionEx = /id="\S+"\s+version="(\S+)"/
     const matches = template.match(versionEx);
 
-    console.log(matches);
+    const currentVersion = Number.parseInt(matches[1]);
+    template = template.replace(currentVersion, currentVersion + 1)
+
+    console.log(template);
 
     post('http://167.71.88.252/formUpload', {
       headers: {
