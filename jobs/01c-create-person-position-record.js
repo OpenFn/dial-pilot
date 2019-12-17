@@ -49,13 +49,13 @@ post(
   '/manage/contact?contact_type=personal',
   {
     formData: state => {
-      state.person_contact_personal.submit_type = 'confirm';
+      state.person_contact.submit_type = 'confirm';
       return state.person_contact_personal;
     },
   },
   post('/manage/contact?contact_type=personal', {
     formData: state => {
-      state.person_contact_personal.submit_type = 'save';
+      state.person_contact.submit_type = 'save';
       return state.person_contact_personal;
     },
     options: {
