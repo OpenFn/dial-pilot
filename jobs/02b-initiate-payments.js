@@ -62,16 +62,15 @@ each(
       console.log(state.data);
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
-      return post(state.configuration.ihrisUrl, {
+      post(state.configuration.ihrisUrl+'/manage/person_payments', {
         authentication: state.configuration.ihrisAuth,
         formData: {
           'form[person_payments][0][0][fields][id]': 'person_payments|0',
           'form[person_payments][0][0][fields][parent]': state.data.personId,
-          'form[person_ payments][0][0][fields][date][day]': state.data.day,
-          'form[person_ payments][0][0][fields][date][month]': state.data.month,
-          'form[person_ payments][0][0][fields][date][year]': state.data.year,
+          'form[person_payments][0][0][fields][date][day]': state.data.day,
+          'form[person_payments][0][0][fields][date][month]': state.data.month,
+          'form[person_payments][0][0][fields][date][year]': state.data.year,
           'form[person_payments][0][0][fields][amount]': state => {
-            console.log('Do some calculation in here?');
             return state.data.salary / 52;
           },
           'form[person_payments][0][0][fields][status]': state => {
@@ -79,6 +78,10 @@ each(
               return 'initiated';
             }
             return 'failed';
+          },
+          'submit_type': 'confirm',
+          options: {
+            successCodes: [200],
           },
         },
       });
