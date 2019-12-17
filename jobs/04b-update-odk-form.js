@@ -43,6 +43,7 @@ get(
         const selectFacilityMatches = template.match(selectFacilityEx);
         const facilityItem = 
           `<item><label>${state.response.body[j].facility_name}</label><value>${facilityId}</value></item>`;
+        console.log(`Adding facility: ${facilityItem}.`);
         template = template.replace(
           selectFacilityEx,
           selectFacilityMatches[0] + facilityItem
@@ -56,6 +57,7 @@ get(
         const selectPositionMatches = template.match(selectPositionEx);
         const positionItem =
           `<item><label>${state.response.body[j].position_name}</label><value>${positionId}</value></item>`;
+        console.log(`Adding position: ${positionItem}.`);
         template = template.replace(
           selectPositionEx,
           selectPositionMatches[0] + positionItem
