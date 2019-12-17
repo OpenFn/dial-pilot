@@ -1,5 +1,4 @@
 // Your job goes here.
-console.log('State:', state.response.body);
 get(
   'http://167.71.88.252/formXml',
   {
@@ -17,17 +16,20 @@ get(
     const selectFacilityEx = /<select1\s+ref="\/RegistrationForm\/position_facility">/gi;
     const selectPositionEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
 
+    console.log(`Receiving ${state.response.body.length} new data!`);
 
-    for(let j = 0; j < state.response.body; j ++) {
+    for(let j = 0; j < state.response.body.length; j ++) {
       let facilityExists = false;
       let positionExists = false;
 
       let facilityId = state.response.body[j].facility_id;
+      console.log(`Processing facility: ${facilityId}.`);
 
       const positions = state.response.body[j].position.split('|'); 
       const salaries = state.response.body[j].salary.split('=');
 
       let positionId = `${positions[1]}_${salaries[1]}`;
+      console.log(`Processing position: ${positionId}.`);
       for(let i = 0; i < itemMatches.length; i ++) {
         if (itemMatches[i].indexOf(facilityId) >= 0) {
           facilityExists = true;
