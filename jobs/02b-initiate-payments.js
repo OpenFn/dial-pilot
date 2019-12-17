@@ -1,4 +1,4 @@
-// @trigger 'daily'
+// @trigger 'when 2a succeeds'
 // @credential 'ihris-mifos-combined'
 // @adaptor 'http'
 // -----------------------------------------------------------------------------
