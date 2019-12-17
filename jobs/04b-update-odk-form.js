@@ -30,6 +30,13 @@ get(
 
 post('http://167.71.88.252/formUpload', {
   formData: state => {
-    return { form_def_file: state.template };
+    return {
+      form_def_file: {
+        value: state.template,
+        options: {
+          filename: 'registration_form.xml'
+        }
+      }
+    };
   },
 });
