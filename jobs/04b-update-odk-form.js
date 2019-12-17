@@ -55,7 +55,7 @@ get(
       if (!positionExists) {
         const selectPositionMatches = template.match(selectPositionEx);
         const positionItem =
-          `<item><label>${state.response.body[j].position_name}</label><value>${position_id}</value></item>`;
+          `<item><label>${state.response.body[j].position_name}</label><value>${positionId}</value></item>`;
         template = template.replace(
           selectPositionEx,
           selectPositionMatches[0] + positionItem
