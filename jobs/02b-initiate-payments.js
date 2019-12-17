@@ -78,6 +78,7 @@ each(
         };
         return state;
       });
+      console.log(state.person_payments)
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
       post(state.configuration.ihrisUrl+'/manage/person_payments', {
