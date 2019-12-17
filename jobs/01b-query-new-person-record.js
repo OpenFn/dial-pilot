@@ -2,11 +2,11 @@ sqlString(state => {
   // The person information is in state from the previous operation
   return (
     `SELECT id FROM hippo_person WHERE firstname='` +
-    state.data.data[0].first_name +
+    state.data.RegistrationForm.first_name +
     `' AND othername='` +
-    state.data.data[0].middle_name +
+    state.data.RegistrationForm.middle_name +
     `' AND surname='` +
-    state.data.data[0].last_name +
+    state.data.RegistrationForm.last_name +
     `'`
   );
 });
