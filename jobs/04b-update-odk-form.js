@@ -76,20 +76,23 @@ get(
       template = template.replace(currentVersion, currentVersion + 1);
     }
 
+    state.templateUpdated = templateUpdated;
     state.template = template;
     return state;
   }
 );
 
-post('http://167.71.88.252/formUpload', {
-  formData: state => {
-    return {
-      form_def_file: {
-        value: state.template,
-        options: {
-          filename: 'registration_form.xml'
+if (state.templateUpdated) {
+  post('http://167.71.88.252/formUpload', {
+    formData: state => {
+      return {
+        form_def_file: {
+          value: state.template,
+          options: {
+            filename: 'registration_form.xml'
+          }
         }
-      }
-    };
-  },
-});
+      };
+    },
+  });
+}
