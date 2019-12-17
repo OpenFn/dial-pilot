@@ -53,7 +53,7 @@ each(
           },
           amount: {
             currency: 'USD',
-            amount: state.data.salary / 12,
+            amount: state.data.salary / 52,
           },
         };
       },
@@ -72,7 +72,7 @@ each(
           'form[person_ payments][0][0][fields][date][year]': state.data.year,
           'form[person_payments][0][0][fields][amount]': state => {
             console.log('Do some calculation in here?');
-            return state.data.salary / 12;
+            return state.data.salary / 52;
           },
           'form[person_payments][0][0][fields][status]': state => {
             if (state.data.success === true) {
