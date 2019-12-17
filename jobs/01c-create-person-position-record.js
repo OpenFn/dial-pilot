@@ -4,6 +4,9 @@ alterState(state => {
   // The position field in the form holds the position ID and the salary
   const positionData = state.data.RegistrationForm.position.split('_');
   const startDateComponents = state.data.RegistrationForm.start_date.split('-')
+  console.log(positionData)
+  console.log(startDateComponents)
+  console.log(state.data.person_id)
   state.person_position = {
     'form[person_position][0][0][fields][id]': 'person_position|0',
     'form[person_position][0][0][fields][parent]': state.data.person_id,
