@@ -59,25 +59,22 @@ each(
       },
     },
     state => {
-      alterState(state => {
-        state.data.person_payments = {
-          'form[person_payments][0][0][fields][id]': 'person_payments|0',
-          'form[person_payments][0][0][fields][parent]': state.data.personId,
-          'form[person_payments][0][0][fields][date][day]': state.data.day,
-          'form[person_payments][0][0][fields][date][month]': state.data.month,
-          'form[person_payments][0][0][fields][date][year]': state.data.year,
-          'form[person_payments][0][0][fields][amount]': state => {
-            return state.data.salary / 52;
-          },
-          'form[person_payments][0][0][fields][status]': state => {
-            if (state.data.success === true) {
-              return 'initiated';
-            }
-            return 'failed';
-          },
-        };
-        return state;
-      });
+      state.data.person_payments = {
+        'form[person_payments][0][0][fields][id]': 'person_payments|0',
+        'form[person_payments][0][0][fields][parent]': state.data.personId,
+        'form[person_payments][0][0][fields][date][day]': state.data.day,
+        'form[person_payments][0][0][fields][date][month]': state.data.month,
+        'form[person_payments][0][0][fields][date][year]': state.data.year,
+        'form[person_payments][0][0][fields][amount]': state => {
+          return state.data.salary / 52;
+        },
+        'form[person_payments][0][0][fields][status]': state => {
+          if (state.data.success === true) {
+            return 'initiated';
+          }
+          return 'failed';
+        },
+      };
       console.log(state.data.person_payments)
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
