@@ -13,6 +13,12 @@ alterState(state => {
     'form[person_position][0][0][fields][start_date][year]': startDateComponents[0],
     'form[salary][0][0][fields][salary]': 'currency|3='+positionData[1]
   };
+  state.person_contact = {
+    'form[person_contact_personal][0][0][fields][id]': 'person_contact_personal|0',
+    'form[person_contact_personal][0][0][fields][parent]': state.data.person_id,
+    'form[person_contact_personal][0][0][fields][mobile_phone]': state.data.RegistrationForm.phone_number,
+    'contact_type': 'personal',
+  };
   return state;
 });
 
@@ -32,6 +38,25 @@ post(
     formData: state => {
       state.person_position.submit_type = 'save';
       return state.person_position;
+    },
+    options: {
+      successCodes: [302],
+    },
+  })
+);
+
+post(
+  '/manage/contact?contact_type=personal',
+  {
+    formData: state => {
+      state.person_contact_personal.submit_type = 'confirm';
+      return state.person_contact_personal;
+    },
+  },
+  post('/manage/contact?contact_type=personal', {
+    formData: state => {
+      state.person_contact_personal.submit_type = 'save';
+      return state.person_contact_personal;
     },
     options: {
       successCodes: [302],
