@@ -41,11 +41,8 @@ get(
 
       if (!facilityExists) {
         const selectFacilityMatches = template.match(selectFacilityEx);
-        const facilityItem =
-          `<item>
-             <label>${state.response.body[j].facility_name}</label>
-             <value>${state.response.body[j].facility_id}</value>
-           </item>`;
+        const facilityItem = 
+          `<item><label>${state.response.body[j].facility_name}</label><value>${facilityId}</value></item>`;
         template = template.replace(
           selectFacilityEx,
           selectFacilityMatches[0] + facilityItem
@@ -58,10 +55,7 @@ get(
       if (!positionExists) {
         const selectPositionMatches = template.match(selectPositionEx);
         const positionItem =
-          `<item>
-             <label>${state.response.body[j].position_name}</label>
-             <value>${position_id}</value>
-           </item>`;
+          `<item><label>${state.response.body[j].position_name}</label><value>${position_id}</value></item>`;
         template = template.replace(
           selectPositionEx,
           selectPositionMatches[0] + positionItem
