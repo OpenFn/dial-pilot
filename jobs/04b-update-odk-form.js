@@ -1,13 +1,11 @@
-// Your job goes here.
-console.log('State:', state.response.body);
 get(
   'http://167.71.88.252/formXml',
   {
     query: {
-      formId: 'registrion_form'
-    }
+      formId: 'registrion_form',
+    },
   },
-  function (state) {
+  state => {
     let template = state.data.body;
 
     const versionEx = /id="\S+"\s+version="(\S+)"/;
@@ -22,18 +20,16 @@ get(
 
     const selectEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
     const selectMatches = template.match(selectEx);
-    template = template.replace(selectEx, selectMatches[0] + positionMatches[0]);
-
-    post(
-      'http://167.71.88.252/formUpload',
-      {
-        formData: {
-          form_def_file: template
-        }
-      },
-      function(state) {
-        console.log(state);
-      }
+    state.template = template.replace(
+      selectEx,
+      selectMatches[0] + positionMatches[0]
     );
+    return state;
   }
 );
+
+post('http://167.71.88.252/formUpload', {
+  formData: state => {
+    return { form_def_file: state.template };
+  },
+});
