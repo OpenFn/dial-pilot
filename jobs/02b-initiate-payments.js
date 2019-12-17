@@ -8,7 +8,7 @@
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
 each(
-  state.response.body[0], function(index, value) {
+  state.response.body[0], (index, value) => {
     post(
       `${state.configuration.mifosUrl}/channel/transactions`,
       {
@@ -92,6 +92,7 @@ each(
             successCodes: [302],
           },
         });
-      });
+      }
+    )
   }
 );
