@@ -14,12 +14,12 @@ alterState(state => {
     'form[salary][0][0][fields][salary]': 'currency|3='+positionData[1],
     'can_edit_position': '1'
   };
-  /*state.person_contact = {
+  state.person_contact = {
     'form[person_contact_personal][0][0][fields][id]': 'person_contact_personal|0',
     'form[person_contact_personal][0][0][fields][parent]': state.data.person_id,
     'form[person_contact_personal][0][0][fields][mobile_phone]': state.data.RegistrationForm.phone_number,
     'contact_type': 'personal',
-  };*/
+  };
   return state;
 });
 
@@ -44,7 +44,7 @@ post(
     },
   })
 );
-/*
+
 post(
   '/manage/contact?contact_type=personal',
   {
@@ -63,4 +63,4 @@ post(
     },
   })
 );
-*/
+
