@@ -9,7 +9,7 @@ get(
     let template = state.data.body;
     
     let re = new RegExp('id="\S+"\s+version="(\S+)"');
-    console.log(re);
+    console.log(template.match(re));
 
     const versionEx = /id="\S+"\s+version="(\S+)"/;
     const versionMatches = template.match(versionEx);
