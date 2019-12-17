@@ -8,12 +8,12 @@
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
 alterState(state => {
-  console.log(state.response.body);
+  console.log(state.response.body[0]);
   return state;
 });
 
 each(
-  dataPath('response.body[*]'),
+  dataPath('response.body[0][*]'),
   post(
     `${state.configuration.mifosUrl}/channel/transactions`,
     {
