@@ -76,7 +76,7 @@ get(
       template = template.replace(currentVersion, currentVersion + 1);
     }
     
-    console.log(`Template updated: `templateUpdated);
+    console.log(`Template updated: ${templateUpdated}`);
 
     state.templateUpdated = templateUpdated;
     state.template = template;
@@ -84,6 +84,7 @@ get(
   }
 );
 
+console.log(`State template updated: ${state.templateUpdated}`);
 if (state.templateUpdated) {
   post('http://167.71.88.252/formUpload', {
     formData: state => {
