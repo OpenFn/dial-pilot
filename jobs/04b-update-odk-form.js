@@ -75,6 +75,8 @@ get(
       console.log(`Updating form version from: ${currentVersion}`);
       template = template.replace(currentVersion, currentVersion + 1);
     }
+    
+    console.log(`Template updated: `templateUpdated);
 
     state.templateUpdated = templateUpdated;
     state.template = template;
