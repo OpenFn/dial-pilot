@@ -11,7 +11,7 @@ alterState(state => {
     'form[person_position][0][0][fields][start_date][day]': startDateComponents[2],
     'form[person_position][0][0][fields][start_date][month]': startDateComponents[1],
     'form[person_position][0][0][fields][start_date][year]': startDateComponents[0],
-    'form[person_position][0][0][fields][status]': 'closed',
+    'form[person_position][0][0][fields][status]': 'position_status|closed',
     'form[salary][0][0][fields][salary]': 'currency|3='+positionData[1],
     'can_edit_position': '1'
   };
