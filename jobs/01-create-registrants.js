@@ -7,6 +7,7 @@
 // =============================================================================
 // Pluck out parts of the ODK submission and prepare our 'person' object that we
 // will use in multiple requests to iHRIS. =====================================
+console.log(JSON.stringify(state.data))
 alterState(state => {
   state.person = {
     'form[person][0][0][fields][id]': 'person|0',
