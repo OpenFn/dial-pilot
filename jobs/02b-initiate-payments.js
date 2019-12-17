@@ -7,8 +7,13 @@
 // Make payment requests in Mifos with the reponse, either in bulk or by
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
+alterState(state => {
+  console.log(state.response.body);
+  return state;
+});
+
 each(
-  dataPath('records[*]'),
+  dataPath('response.body[*]'),
   post(
     `${state.configuration.mifosUrl}/channel/transactions`,
     {
