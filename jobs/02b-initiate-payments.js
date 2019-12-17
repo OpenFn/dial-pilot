@@ -82,12 +82,16 @@ each(
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
       post(state.configuration.ihrisUrl+'/manage/person_payments', {
         authentication: state.configuration.ihrisAuth,
-        formData: {
-          
-          'submit_type': 'confirm',
-          options: {
-            successCodes: [200],
-          },
+        formData: state => {
+          state.person_payments.submit_type = 'confirm';
+          return state.person_payments;
+        },
+      });
+      post(state.configuration.ihrisUrl+'/manage/person_payments', {
+        authentication: state.configuration.ihrisAuth,
+        formData: state => {
+          state.person_payments.submit_type = 'save';
+          return state.person_payments;
         },
       });
     }
