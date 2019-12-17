@@ -25,7 +25,7 @@ get(
       let facilityId = state.response.body[j].facility_id;
       console.log(`Processing facility: ${facilityId}.`);
 
-      const positions = state.response.body[j].position.split('|'); 
+      const positions = state.response.body[j].position_id.split('|'); 
       const salaries = state.response.body[j].salary.split('=');
 
       let positionId = `${positions[1]}_${salaries[1]}`;
