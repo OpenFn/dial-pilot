@@ -93,6 +93,9 @@ each(
           state.person_payments.submit_type = 'save';
           return state.person_payments;
         },
+        options: {
+          successCodes: [302],
+        },
       });
     }
   )
