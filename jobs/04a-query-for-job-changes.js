@@ -1,5 +1,5 @@
 sqlString(state => {
-  return "SELECT position, facility, status FROM position_updates WHERE status='NEW';";
+  return "SELECT position, facility, status, * FROM position_updates WHERE status='NEW';";
 });
 
 // alterState(state => {
