@@ -55,7 +55,7 @@ each(
     },
     state => {
       const today=new Date();
-      console.log(state);
+      console.log(JSON.stringify(state.response.body));
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]': 'person|'+state.data.person_id,
