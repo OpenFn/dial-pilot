@@ -59,12 +59,8 @@ each(
       },
     },
     state => {
-      console.log(state.data);
-      // =====================================================================
-      // Create "initiated" payments in iHRIS with their mifos external IDs ==
-      post(state.configuration.ihrisUrl+'/manage/person_payments', {
-        authentication: state.configuration.ihrisAuth,
-        formData: {
+      alterState(state => {
+        state.person_payments = {
           'form[person_payments][0][0][fields][id]': 'person_payments|0',
           'form[person_payments][0][0][fields][parent]': state.data.personId,
           'form[person_payments][0][0][fields][date][day]': state.data.day,
@@ -79,6 +75,15 @@ each(
             }
             return 'failed';
           },
+        };
+        return state;
+      });
+      // =====================================================================
+      // Create "initiated" payments in iHRIS with their mifos external IDs ==
+      post(state.configuration.ihrisUrl+'/manage/person_payments', {
+        authentication: state.configuration.ihrisAuth,
+        formData: {
+          
           'submit_type': 'confirm',
           options: {
             successCodes: [200],
