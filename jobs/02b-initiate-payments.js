@@ -42,7 +42,7 @@ each(
           payee: {
             partyIdInfo: {
               partyIdType: 'MSISDN',
-              partyIdentifier: dataValue('MSISDN')(state),
+              partyIdentifier: state.data.msisdn,
             },
           },
           amountType: 'SEND',
