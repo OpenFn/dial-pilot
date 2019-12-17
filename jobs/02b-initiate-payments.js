@@ -7,11 +7,6 @@
 // Make payment requests in Mifos with the reponse, either in bulk or by
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
-alterState(state => {
-  console.log(state.response.body[0]);
-  return state;
-});
-
 each(
   state.response.body[0],
   post(
@@ -60,6 +55,7 @@ each(
     },
     state => {
       const today=new Date();
+      console.log(state.data);
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]': 'person|'+state.data.person_id,
