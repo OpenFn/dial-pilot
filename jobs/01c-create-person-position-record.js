@@ -50,13 +50,13 @@ post(
   {
     formData: state => {
       state.person_contact.submit_type = 'confirm';
-      return state.person_contact_personal;
+      return state.person_contact;
     },
   },
   post('/manage/contact?contact_type=personal', {
     formData: state => {
       state.person_contact.submit_type = 'save';
-      return state.person_contact_personal;
+      return state.person_contact;
     },
     options: {
       successCodes: [302],
