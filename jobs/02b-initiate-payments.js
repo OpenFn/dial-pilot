@@ -13,7 +13,7 @@ alterState(state => {
 });
 
 each(
-  dataPath('response.body[0]'),
+  state.response.body[0],
   post(
     `${state.configuration.mifosUrl}/channel/transactions`,
     {
