@@ -9,6 +9,7 @@
 // for each one ==============================================================
 each(
   state.response.body[0], (index, value) => {
+    console.log(value)
     post(
       `${state.configuration.mifosUrl}/channel/transactions`,
       {
