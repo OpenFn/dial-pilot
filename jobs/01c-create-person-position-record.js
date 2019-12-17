@@ -44,7 +44,7 @@ post(
     },
   })
 );
-
+/*
 post(
   '/manage/contact?contact_type=personal',
   {
@@ -63,3 +63,4 @@ post(
     },
   })
 );
+*/
