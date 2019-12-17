@@ -60,7 +60,7 @@ each(
     },
     state => {
       alterState(state => {
-        state.person_payments = {
+        state.data.person_payments = {
           'form[person_payments][0][0][fields][id]': 'person_payments|0',
           'form[person_payments][0][0][fields][parent]': state.data.personId,
           'form[person_payments][0][0][fields][date][day]': state.data.day,
@@ -78,21 +78,21 @@ each(
         };
         return state;
       });
-      console.log(state.person_payments)
+      console.log(state.data.person_payments)
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
       post(state.configuration.ihrisUrl+'/manage/person_payments', {
         authentication: state.configuration.ihrisAuth,
         formData: state => {
-          state.person_payments.submit_type = 'confirm';
-          return state.person_payments;
+          state.data.person_payments.submit_type = 'confirm';
+          return state.data.person_payments;
         },
       });
       post(state.configuration.ihrisUrl+'/manage/person_payments', {
         authentication: state.configuration.ihrisAuth,
         formData: state => {
-          state.person_payments.submit_type = 'save';
-          return state.person_payments;
+          state.data.person_payments.submit_type = 'save';
+          return state.data.person_payments;
         },
         options: {
           successCodes: [302],
