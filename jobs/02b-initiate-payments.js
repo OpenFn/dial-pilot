@@ -76,6 +76,9 @@ each(
         'form[person_payments][0][0][fields][amount]': state => {
           return state.data.salary / 52;
         },
+        'form[person_payments][0][0][fields][transactionId]': state => {
+          return state.response.body.transactionId;
+        },
         'form[person_payments][0][0][fields][status]': state => {
           if (state.data.success === true) {
             return 'initiated';
