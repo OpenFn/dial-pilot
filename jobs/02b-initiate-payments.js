@@ -17,6 +17,7 @@ alterState(state => {
 // Make payment requests in Mifos with the reponse, either in bulk or by
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
+console.log(state.payees)
 each(
   state.payees,
   post(
