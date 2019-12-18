@@ -64,10 +64,10 @@ each(
     },
     state => {
       const today = new Date();
-      console.log("Body: "+JSON.stringify(state.response.body));
+      console.log("Body: "+JSON.stringify(state.data.body));
       const currPayee = state.payees[state.index];
       console.log(currPayee)
-      console.log("Transaction ID: " + state.response.body.transactionId);
+      console.log("Transaction ID: " + state.data.body.transactionId);
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]':
