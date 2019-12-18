@@ -80,6 +80,7 @@ each(
           state.data.statusCode === 200 ? 'initiated' : 'failed',
       };
       console.log(state.data.person_payments);
+      console.log(state.configuraton);
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
       post(`${state.configuration.ihrisUrl}/manage/person_payments`, {
