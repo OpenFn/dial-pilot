@@ -3,12 +3,21 @@
 // @adaptor 'http'
 // -----------------------------------------------------------------------------
 
+// Hang 'payees' on state so that operations which replace "response" don't
+// overwrite these data. QUESTION: Why pluck body[0] instead of body[*]? What
+// happens if there are multiple payees? Is that first item in the body array an
+// array itself?
+alterState(state => {
+  state.payees = state.response.body[0];
+  return state;
+});
+
 // ===========================================================================
 // Make payment requests in Mifos with the reponse, either in bulk or by
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
 each(
-  state.response.body[0], 
+  state.payees,
   post(
     `${state.configuration.mifosUrl}/channel/transactions`,
     {
@@ -54,13 +63,15 @@ each(
       },
     },
     state => {
-      const today=new Date();
+      const today = new Date();
       console.log(JSON.stringify(state.response.body));
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
-        'form[person_payments][0][0][fields][parent]': 'person|'+state.data.person_id,
+        'form[person_payments][0][0][fields][parent]':
+          'person|' + state.data.person_id,
         'form[person_payments][0][0][fields][date][day]': today.getDate(),
-        'form[person_payments][0][0][fields][date][month]': today.getMonth()+1,
+        'form[person_payments][0][0][fields][date][month]':
+          today.getMonth() + 1,
         'form[person_payments][0][0][fields][date][year]': today.getFullYear(),
         'form[person_payments][0][0][fields][amount]': state => {
           return state.data.salary / 52;
@@ -72,17 +83,17 @@ each(
           return 'failed';
         },
       };
-      console.log(state.data.person_payments)
+      console.log(state.data.person_payments);
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
-      post(state.configuration.ihrisUrl+'/manage/person_payments', {
+      post(state.configuration.ihrisUrl + '/manage/person_payments', {
         authentication: state.configuration.ihrisAuth,
         formData: state => {
           state.data.person_payments.submit_type = 'confirm';
           return state.data.person_payments;
         },
       });
-      post(state.configuration.ihrisUrl+'/manage/person_payments', {
+      post(state.configuration.ihrisUrl + '/manage/person_payments', {
         authentication: state.configuration.ihrisAuth,
         formData: state => {
           state.data.person_payments.submit_type = 'save';
