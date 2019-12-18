@@ -64,7 +64,7 @@ each(
     },
     state => {
       const today = new Date();
-      console.log(JSON.stringify(state.response.body));
+      console.log("Body: "+JSON.stringify(state.response.body));
       const currPayee = state.payees[state.index];
       console.log(currPayee)
       console.log("Transaction ID: " + state.response.body.transactionId);
