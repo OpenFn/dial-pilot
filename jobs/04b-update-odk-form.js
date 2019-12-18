@@ -18,7 +18,7 @@ get(
     const selectFacilityEx = /<select1\s+ref="\/RegistrationForm\/position_facility">/gi;
     const selectPositionEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
 
-    console.log(`Receiving ${state.response.body.length} new data!`);
+    console.log(`Received ${state.response.body.length} new data!`);
 
     for(let j = 0; j < state.response.body.length; j ++) {
       let facilityExists = false;
@@ -37,6 +37,10 @@ get(
           facilityExists = true;
         }
         if (itemMatches[i].indexOf(positionId) >= 0) {
+          if (state.response.body[j].status === 'CLOSED') {
+            console.log(`Removing closed position: ${positionId}.`);
+            template = template.replace(itemMatches[i], '');
+          }
           positionExists = true;
         }
       }
@@ -55,7 +59,7 @@ get(
         console.log('Not seeing any facility to add. Moving along!');
       }
 
-      if (!positionExists) {
+      if (!positionExists && state.response.body[j].status === 'NEW') {
         const selectPositionMatches = template.match(selectPositionEx);
         const positionItem =
           `<item><label>${state.response.body[j].position_name}</label><value>${positionId}</value></item>`;
@@ -78,7 +82,6 @@ get(
       template = template.replace(currentVersion, currentVersion + 1);
     }
     
-    state.templateUpdated = templateUpdated;
     state.template = template;
     return state;
   }
