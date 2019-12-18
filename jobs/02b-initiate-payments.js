@@ -9,6 +9,7 @@
 // array itself?
 alterState(state => {
   state.payees = state.response.body[0];
+  state.saved_config = state.configuration;
   return state;
 });
 
@@ -81,16 +82,17 @@ each(
       };
       console.log(state.data.person_payments);
       console.log(state.configuraton);
+      console.log(state.saved_config);
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
-      post(`${state.configuration.ihrisUrl}/manage/person_payments`, {
+      post(`${state.saved_config.ihrisUrl}/manage/person_payments`, {
           authentication: state.configuration.ihrisAuth,
           formData: state => {
             state.data.person_payments.submit_type = 'confirm';
             return state.data.person_payments;
           },
         },
-        post(`${state.configuration.ihrisUrl}/manage/person_payments`, {
+        post(`${state.saved_config.ihrisUrl}/manage/person_payments`, {
           authentication: state.configuration.ihrisAuth,
           formData: state => {
             state.data.person_payments.submit_type = 'save';
