@@ -9,6 +9,8 @@ get(
   state => {
     let template = state.data.body;
     let templateUpdated = false;
+    
+    console.log('Start processing state ...');
 
     const itemEx = /<item>\s?<label>[^<>]*<\/label>\s?<value>[^<>]*<\/value>\s?<\/item>/gi;
     const itemMatches = template.match(itemEx);
