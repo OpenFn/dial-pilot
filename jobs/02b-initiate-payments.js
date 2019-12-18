@@ -68,6 +68,7 @@ each(
       const today = new Date();
       console.log(JSON.stringify(state.response.body));
       console.log("Index: "+state.index)
+      console.log(state.payees[state.index])
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]':
