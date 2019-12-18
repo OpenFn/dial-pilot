@@ -89,6 +89,7 @@ each(
           authentication: state.configuration.ihrisAuth,
           formData: state => {
             state.data.person_payments.submit_type = 'confirm';
+            console.log(state.data.person_payments);
             return state.data.person_payments;
           },
         },
