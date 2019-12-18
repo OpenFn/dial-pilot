@@ -9,7 +9,6 @@
 // array itself?
 alterState(state => {
   state.payees = state.response.body[0];
-  console.log(state.payees);
   return state;
 });
 
@@ -17,7 +16,6 @@ alterState(state => {
 // Make payment requests in Mifos with the reponse, either in bulk or by
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
-console.log(state.payees)
 each(
   state.response.body[0],
   post(
@@ -67,12 +65,12 @@ each(
     state => {
       const today = new Date();
       console.log(JSON.stringify(state.response.body));
-      console.log("Index: "+state.index)
-      console.log(state.payees[state.index])
+      const currPayee = state.payees[state.index];
+      console.log(currPayee)
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]':
-          'person|' + state.data.person_id,
+          'person|' + currPayee.person_id,
         'form[person_payments][0][0][fields][date][day]': today.getDate(),
         'form[person_payments][0][0][fields][date][month]':
           today.getMonth() + 1,
