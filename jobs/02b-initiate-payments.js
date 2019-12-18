@@ -65,7 +65,6 @@ each(
     state => {
       const today = new Date();
       const currPayee = state.payees[state.index];
-      console.log("Success: " + state.data.success);
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]':
@@ -75,20 +74,22 @@ each(
           today.getMonth() + 1,
         'form[person_payments][0][0][fields][date][year]': today.getFullYear(),
         'form[person_payments][0][0][fields][amount]': currPayee.salary / 52,
-        'form[person_payments][0][0][fields][transactionId]': state.data.body.transactionId, 
-        'form[person_payments][0][0][fields][status]': state.data.success === true ? 'initiated' : 'failed',
+        'form[person_payments][0][0][fields][transactionId]': 
+          state.data.body.transactionId, 
+        'form[person_payments][0][0][fields][status]': 
+          state.data.statusCode === 200 ? 'initiated' : 'failed',
       };
       console.log(state.data.person_payments);
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
-      post(state.configuration.ihrisUrl + '/manage/person_payments', {
+      post(`${state.configuration.ihrisUrl}/manage/person_payments`, {
           authentication: state.configuration.ihrisAuth,
           formData: state => {
             state.data.person_payments.submit_type = 'confirm';
             return state.data.person_payments;
           },
         },
-        post(state.configuration.ihrisUrl + '/manage/person_payments', {
+        post(`${state.configuration.ihrisUrl}/manage/person_payments`, {
           authentication: state.configuration.ihrisAuth,
           formData: state => {
             state.data.person_payments.submit_type = 'save';
