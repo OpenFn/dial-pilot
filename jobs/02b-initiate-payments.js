@@ -8,8 +8,8 @@
 // happens if there are multiple payees? Is that first item in the body array an
 // array itself?
 alterState(state => {
-  state.payees = state.response.body[0];
-  console.log(state.payees);
+  state.data.payees = state.response.body[0];
+  console.log(state.data.payees);
   return state;
 });
 
