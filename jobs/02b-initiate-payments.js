@@ -18,8 +18,7 @@ alterState(state => {
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
 each(
-  [],
-  //state.payees,
+  state.payees.toArray(),
   post(
     `${state.configuration.mifosUrl}/channel/transactions`,
     {
