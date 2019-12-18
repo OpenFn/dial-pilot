@@ -67,6 +67,7 @@ each(
       console.log(JSON.stringify(state.response.body));
       const currPayee = state.payees[state.index];
       console.log(currPayee)
+      console.log("Transaction ID: " + state.response.body.transactionId);
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]':
@@ -76,7 +77,7 @@ each(
           today.getMonth() + 1,
         'form[person_payments][0][0][fields][date][year]': today.getFullYear(),
         'form[person_payments][0][0][fields][amount]': state => {
-          return state.data.salary / 52;
+          return currPayee.salary / 52;
         },
         'form[person_payments][0][0][fields][transactionId]': state => {
           return state.response.body.transactionId;
