@@ -8,7 +8,7 @@
 // happens if there are multiple payees? Is that first item in the body array an
 // array itself?
 alterState(state => {
-  state.payees = { 'payees': state.response.body[0] };
+  state.payees = state.response.body[0];
   console.log(state.payees);
   return state;
 });
@@ -19,7 +19,7 @@ alterState(state => {
 // for each one ==============================================================
 console.log(state.payees)
 each(
-  state.payees,
+  state.response.body[0],
   post(
     `${state.configuration.mifosUrl}/channel/transactions`,
     {
