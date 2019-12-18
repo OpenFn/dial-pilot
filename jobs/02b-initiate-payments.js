@@ -88,6 +88,7 @@ each(
           return state.data.person_payments;
         },
       });
+      console.log(state.data)
       post(state.configuration.ihrisUrl + '/manage/person_payments', {
         authentication: state.configuration.ihrisAuth,
         formData: state => {
