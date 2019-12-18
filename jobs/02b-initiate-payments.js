@@ -64,10 +64,8 @@ each(
     },
     state => {
       const today = new Date();
-      console.log("Body: "+JSON.stringify(state.data.body));
       const currPayee = state.payees[state.index];
-      console.log(currPayee)
-      console.log("Transaction ID: " + state.data.body.transactionId);
+      console.log("Success: " + state.data.success);
       state.data.person_payments = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]':
@@ -76,18 +74,9 @@ each(
         'form[person_payments][0][0][fields][date][month]':
           today.getMonth() + 1,
         'form[person_payments][0][0][fields][date][year]': today.getFullYear(),
-        'form[person_payments][0][0][fields][amount]': state => {
-          return currPayee.salary / 52;
-        },
-        'form[person_payments][0][0][fields][transactionId]': state => {
-          return state.response.body.transactionId;
-        },
-        'form[person_payments][0][0][fields][status]': state => {
-          if (state.data.success === true) {
-            return 'initiated';
-          }
-          return 'failed';
-        },
+        'form[person_payments][0][0][fields][amount]': currPayee.salary / 52,
+        'form[person_payments][0][0][fields][transactionId]': state.data.body.transactionId, 
+        'form[person_payments][0][0][fields][status]': state.data.success === true ? 'initiated' : 'failed',
       };
       console.log(state.data.person_payments);
       // =====================================================================
