@@ -3,21 +3,20 @@ get(
   'http://167.71.88.252/formXml',
   {
     query: {
-      formId: 'registration_form',
+      formId: 'evaluation_form',
     },
   },
   state => {
     let template = state.data.body;
     let templateUpdated = false;
 
-    state.response = {
-      body: [{
+    state.response.body = [{
       user_id: '100100111',
       user_name: 'Testarius Paul Kungu'
     }, {
       user_id: '100100112',
       user_name: 'Testarius Ambote Indakasi'
-    }]};
+    }]
 
     const itemEx = /<item>\s?<label>[^<>]*<\/label>\s?<value>[^<>]*<\/value>\s?<\/item>/gi;
     const itemMatches = template.match(itemEx);
@@ -72,7 +71,7 @@ post('http://167.71.88.252/formUpload', {
       form_def_file: {
         value: state.template,
         options: {
-          filename: 'registration_form.xml'
+          filename: 'evaluation_form.xml'
         }
       }
     };
