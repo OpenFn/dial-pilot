@@ -7,7 +7,8 @@ alterState(state => {
   // Note: we pluck out on the 'RowDataResponses' from the SQL server.
   const recordData = state.response.body.filter(x => x.id !== undefined);
   // Get the first record
-  state.data.record = recordData[0] && recordData[0].record
+  console.log(recordData);
+  state.data.record = recordData[0] && recordData[0].record;
   return state;
 });
 
