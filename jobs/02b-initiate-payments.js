@@ -75,9 +75,9 @@ each(
           today.getMonth() + 1,
         'form[person_payments][0][0][fields][date][year]': today.getFullYear(),
         'form[person_payments][0][0][fields][amount]': currPayee.salary / 52,
-        'form[person_payments][0][0][fields][transactionId]': 
-          state.data.body.transactionId, 
-        'form[person_payments][0][0][fields][status]': 
+        'form[person_payments][0][0][fields][transactionId]':
+          state.data.body.transactionId,
+        'form[person_payments][0][0][fields][status]':
           state.data.statusCode === 200 ? 'initiated' : 'failed',
       };
       console.log(state.data.person_payment);
@@ -85,11 +85,13 @@ each(
       console.log(state.saved_config);
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
-      post(`${state.saved_config.ihrisUrl}/manage/person_payments`, {
+      post(
+        `${state.saved_config.ihrisUrl}/manage/person_payments`,
+        {
           authentication: state.configuration.ihrisAuth,
           formData: state => {
             state.data.person_payment.submit_type = 'confirm';
-            console.log("PaymentData: " + state.data.person_payment);
+            console.log('PaymentData: ' + state.data.person_payment);
             return state.data.person_payment;
           },
         },
