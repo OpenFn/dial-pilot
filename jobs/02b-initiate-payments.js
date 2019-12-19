@@ -8,7 +8,7 @@
 // happens if there are multiple payees? Is that first item in the body array an
 // array itself?
 alterState(state => {
-  state.payees = state.response.body[0];
+  state.data.payees = state.response.body[0];
   state.saved_config = state.configuration;
   return state;
 });
@@ -18,7 +18,7 @@ alterState(state => {
 // iterating through the array of registrants and making a separate request
 // for each one ==============================================================
 each(
-  state.response.body[0],
+  dataPath('payees[*]'),
   post(
     `${state.configuration.mifosUrl}/channel/transactions`,
     {
@@ -65,8 +65,8 @@ each(
     },
     state => {
       const today = new Date();
-      const currPayee = state.payees[state.index];
-      state.data.person_payments = {
+      const currPayee = state.references[0];
+      state.data.person_payment = {
         'form[person_payments][0][0][fields][id]': 'person_payments|0',
         'form[person_payments][0][0][fields][parent]':
           'person|' + currPayee.person_id,
@@ -80,7 +80,7 @@ each(
         'form[person_payments][0][0][fields][status]': 
           state.data.statusCode === 200 ? 'initiated' : 'failed',
       };
-      console.log(state.data.person_payments);
+      console.log(state.data.person_payment);
       console.log(state.configuraton);
       console.log(state.saved_config);
       // =====================================================================
@@ -88,22 +88,22 @@ each(
       post(`${state.saved_config.ihrisUrl}/manage/person_payments`, {
           authentication: state.configuration.ihrisAuth,
           formData: state => {
-            state.data.person_payments.submit_type = 'confirm';
-            console.log("PaymentData: "+state.data.person_payments);
-            return state.data.person_payments;
+            state.data.person_payment.submit_type = 'confirm';
+            console.log("PaymentData: " + state.data.person_payment);
+            return state.data.person_payment;
           },
         },
         post(`${state.saved_config.ihrisUrl}/manage/person_payments`, {
           authentication: state.configuration.ihrisAuth,
           formData: state => {
-            state.data.person_payments.submit_type = 'save';
-            return state.data.person_payments;
+            state.references[1].person_payment.submit_type = 'save';
+            return state.references[1].person_payment;
           },
           options: {
             successCodes: [302],
           },
         })
-      );
+      )(state);
     }
   )
 );
