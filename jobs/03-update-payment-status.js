@@ -8,9 +8,10 @@ alterState(state => {
   const record = state.response.body.filter(x => x.id !== undefined);
   // Get the first record
   state.data.record = record
-   return state;
+  return state;
 });
 
 sqlString(state => {
-  console.log(state);
+  console.log(state.data.record);
+  return `UPDATE entry SET string_value='completed' where record=${state.data.record} and string_value='initiated'`;
 })
