@@ -15,4 +15,9 @@ alterState(state => {
 sqlString(state => {
   console.log(state.data.body);
   return `UPDATE entry SET string_value='completed' where record=${state.data.record} and string_value='initiated'`;
-})
+});
+
+sqlString(state => {
+  console.log(state.data.body);
+  return `UPDATE last_entry SET string_value='completed' where record=${state.data.record} and string_value='initiated'`;
+});
