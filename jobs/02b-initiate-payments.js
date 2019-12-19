@@ -9,7 +9,7 @@
 // array itself?
 alterState(state => {
   console.log(state);
-  state.data.payees = state.response.body[0];
+  state.data = { payees: state.response.body[0] };
   state.saved_config = state.configuration;
   return state;
 });
