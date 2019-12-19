@@ -5,7 +5,7 @@ sqlString(state => {
 
 alterState(state => {
   // Note: we pluck out on the 'RowDataResponses' from the SQL server.
-  const record = state.response.body.filter(x => x.id !== undefined);
+  const record = state.RowDataPacket[0];
   // Get the first record
   state.data.record = record
   return state;
