@@ -78,10 +78,8 @@ each(
         'form[person_payments][0][0][fields][transactionId]':
           state.data.body.transactionId,
         'form[person_payments][0][0][fields][status]':
-          state.data.statusCode == 200 ? 'initiated' : 'failed',
+          state.data.body.transactionId ? 'initiated' : 'failed',
       };
-      console.log(state.data.person_payment);
-      console.log(state.data.statusCode);
       // =====================================================================
       // Create "initiated" payments in iHRIS with their mifos external IDs ==
       post(
