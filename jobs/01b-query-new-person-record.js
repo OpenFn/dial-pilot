@@ -1,6 +1,6 @@
 sqlString(state => {
   // The person information is in state from the previous operation
-  console.log(state.data)
+  console.log(state)
  /* return (
     `SELECT id FROM hippo_person WHERE firstname='` +
     state.data.RegistrationForm.first_name +
