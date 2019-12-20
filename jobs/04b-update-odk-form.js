@@ -18,17 +18,17 @@ get(
     const selectFacilityEx = /<select1\s+ref="\/RegistrationForm\/position_facility">/gi;
     const selectPositionEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
 
-    console.log(`Received ${state.response.body.length} new data!`);
+    console.log(`Received ${state.new_jobs.length} new data!`);
 
-    for(let j = 0; j < state.response.body.length; j ++) {
+    for(let j = 0; j < state.new_jobs.length; j ++) {
       let facilityExists = false;
       let positionExists = false;
 
-      let facilityId = state.response.body[j].facility_id;
+      let facilityId = state.new_jobs[j].facility_id;
       console.log(`Processing facility: ${facilityId}.`);
 
-      const positions = state.response.body[j].position_id.split('|'); 
-      const salaries = state.response.body[j].salary.split('=');
+      const positions = state.new_jobs[j].position_id.split('|'); 
+      const salaries = state.new_jobs[j].salary.split('=');
 
       let positionId = `${positions[1]}_${salaries[1]}`;
       console.log(`Processing position: ${positionId}.`);
@@ -37,7 +37,7 @@ get(
           facilityExists = true;
         }
         if (itemMatches[i].indexOf(positionId) >= 0) {
-          if (state.response.body[j].status === 'CLOSED') {
+          if (state.new_jobs[j].status === 'CLOSED') {
             console.log(`Removing closed position: ${positionId}.`);
             template = template.replace(itemMatches[i], '');
           }
@@ -48,7 +48,7 @@ get(
       if (!facilityExists) {
         const selectFacilityMatches = template.match(selectFacilityEx);
         const facilityItem = 
-          `<item><label>${state.response.body[j].facility_name}</label><value>${facilityId}</value></item>`;
+          `<item><label>${state.new_jobs[j].facility_name}</label><value>${facilityId}</value></item>`;
         console.log(`Adding facility: ${facilityItem}.`);
         template = template.replace(
           selectFacilityEx,
@@ -59,10 +59,10 @@ get(
         console.log('Not seeing any facility to add. Moving along!');
       }
 
-      if (!positionExists && state.response.body[j].status === 'NEW') {
+      if (!positionExists && state.new_jobs[j].status === 'NEW') {
         const selectPositionMatches = template.match(selectPositionEx);
         const positionItem =
-          `<item><label>${state.response.body[j].position_name}</label><value>${positionId}</value></item>`;
+          `<item><label>${state.new_jobs[j].position_name}</label><value>${positionId}</value></item>`;
         console.log(`Adding position: ${positionItem}.`);
         template = template.replace(
           selectPositionEx,
