@@ -10,19 +10,17 @@ get(
     let template = state.data.body;
     let templateUpdated = false;
 
-    console.log(state.new_employees)
-
     const itemEx = /<item>\s?<label>[^<>]*<\/label>\s?<value>[^<>]*<\/value>\s?<\/item>/gi;
     const itemMatches = template.match(itemEx);
 
     const selectUserEx = /<select1\s+ref="\/EvaluationForm\/social_worker_id">/gi;
 
-    console.log(`Receiving ${state.response.body.length} new data!`);
+    console.log(`Receiving ${state.new_employees.length} new data!`);
 
-    for (let j = 0; j < state.response.body.length; j++) {
+    for (let j = 0; j < state.new_employees.length; j++) {
       let userExists = false;
 
-      let userId = state.response.body[j].person_id.split('|')[1];
+      let userId = state.new_employees[j].person_id.split('|')[1];
       console.log(`Processing user: ${userId}.`);
 
       for (let i = 0; i < itemMatches.length; i++) {
@@ -33,9 +31,9 @@ get(
 
       if (!userExists) {
         const selectUserMatches = template.match(selectUserEx);
-        const msisdn = state.response.body[j].msisdn;
+        const msisdn = state.new_employees[j].msisdn;
         const userItem =
-          `<item><label>${state.response.body[j].person_name}</label><value>${userId}_${msisdn}</value></item>`;
+          `<item><label>${state.new_employees[j].person_name}</label><value>${userId}_${msisdn}</value></item>`;
         console.log(`Adding user: ${userItem}.`);
         template = template.replace(
           selectUserEx,
