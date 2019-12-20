@@ -50,7 +50,7 @@ post(
     state.data.person_payment = {
       'form[person_payments][0][0][fields][id]': 'person_payments|0',
       'form[person_payments][0][0][fields][parent]':
-        'person|' + state.payee.social_worker_id.split('_')[1],
+        'person|' + state.payee.social_worker_id.split('_')[0],
       'form[person_payments][0][0][fields][date][day]': today.getDate(),
       'form[person_payments][0][0][fields][date][month]':
         today.getMonth() + 1,
