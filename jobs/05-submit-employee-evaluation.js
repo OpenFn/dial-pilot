@@ -4,7 +4,7 @@
 // -----------------------------------------------------------------------------
 
 alterState(state => {
-  state.data = { payee: state.data.EvaluationForm };
+  state.payee = state.data.EvaluationForm;
   return state;
 });
 
@@ -27,7 +27,7 @@ post(
         payee: {
           partyIdInfo: {
             partyIdType: 'MSISDN',
-            partyIdentifier: state.data.payee.social_worker_id.split('_')[1],
+            partyIdentifier: state.payee.social_worker_id.split('_')[1],
           },
         },
         amountType: 'SEND',
@@ -39,7 +39,7 @@ post(
         amount: {
           currency: 'USD',
           // Calculate the bonus amount - for now just use number of clients seen * 100
-          amount: state.data.payee.client_counts*100,
+          amount: state.payee.client_counts*100,
         },
       };
     },
@@ -50,12 +50,12 @@ post(
     state.data.person_payment = {
       'form[person_payments][0][0][fields][id]': 'person_payments|0',
       'form[person_payments][0][0][fields][parent]':
-        'person|' + state.data.payee.social_worker_id.split('_')[1],
+        'person|' + state.payee.social_worker_id.split('_')[1],
       'form[person_payments][0][0][fields][date][day]': today.getDate(),
       'form[person_payments][0][0][fields][date][month]':
         today.getMonth() + 1,
       'form[person_payments][0][0][fields][date][year]': today.getFullYear(),
-      'form[person_payments][0][0][fields][amount]': state.data.payee.client_counts*100,
+      'form[person_payments][0][0][fields][amount]': state.payee.client_counts*100,
       'form[person_payments][0][0][fields][transactionId]':
         state.data.body.transactionId,
       'form[person_payments][0][0][fields][status]':
