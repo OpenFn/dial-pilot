@@ -5,6 +5,7 @@ sqlString(state => {
 alterState(state => {
   state.new_employees = state.response.body;
   console.log(state.new_employees);
+  return state;
 })
 
 sqlString(state => {
