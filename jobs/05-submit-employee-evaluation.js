@@ -5,9 +5,9 @@
 
 console.log(state.data.EvaluationForm);
 // Calculate the bonus payment - for now, make it 100*the number of clients seen
-const bonus_amount = state.data.EvaluationForm.client_counts*100;
-const person_id = state.data.EvaluationForm.social_worker_id.split('_')[0];
-const msisdn = state.data.EvaluationForm.social_worker_id.split('_')[1];
+state.bonus_amount = state.data.EvaluationForm.client_counts*100;
+state.person_id = state.data.EvaluationForm.social_worker_id.split('_')[0];
+state.msisdn = state.data.EvaluationForm.social_worker_id.split('_')[1];
 
 post(
   `${state.configuration.mifosUrl}/channel/transactions`,
@@ -28,7 +28,7 @@ post(
         payee: {
           partyIdInfo: {
             partyIdType: 'MSISDN',
-            partyIdentifier: msisdn,
+            partyIdentifier: state.msisdn,
           },
         },
         amountType: 'SEND',
@@ -39,7 +39,7 @@ post(
         },
         amount: {
           currency: 'USD',
-          amount: bonus_amount,
+          amount: state.bonus_amount,
         },
       };
     },
@@ -49,12 +49,12 @@ post(
     state.data.person_payment = {
       'form[person_payments][0][0][fields][id]': 'person_payments|0',
       'form[person_payments][0][0][fields][parent]':
-        'person|' + person_id,
+        'person|' + state.person_id,
       'form[person_payments][0][0][fields][date][day]': today.getDate(),
       'form[person_payments][0][0][fields][date][month]':
         today.getMonth() + 1,
       'form[person_payments][0][0][fields][date][year]': today.getFullYear(),
-      'form[person_payments][0][0][fields][amount]': bonus_amount,
+      'form[person_payments][0][0][fields][amount]': state.bonus_amount,
       'form[person_payments][0][0][fields][transactionId]':
         state.data.body.transactionId,
       'form[person_payments][0][0][fields][status]':
