@@ -17,7 +17,7 @@ alterState(state => {
   };
   state.person_contact = {
     'form[person_contact_personal][0][0][fields][id]': 'person_contact_personal|0',
-    'form[person_contact_personal][0][0][fields][parent]': state.references[0].person_id,
+    'form[person_contact_personal][0][0][fields][parent]': state.data.person_id,
     'form[person_contact_personal][0][0][fields][mobile_phone]': state.references[0].RegistrationForm.phone_number,
     'contact_type': 'personal',
   };
