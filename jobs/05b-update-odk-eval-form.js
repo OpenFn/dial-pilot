@@ -10,7 +10,7 @@ get(
     let template = state.data.body;
     let templateUpdated = false;
 
-    console.log(state.response)
+    console.log(state.response.body)
 
     const itemEx = /<item>\s?<label>[^<>]*<\/label>\s?<value>[^<>]*<\/value>\s?<\/item>/gi;
     const itemMatches = template.match(itemEx);
@@ -22,7 +22,7 @@ get(
     for (let j = 0; j < state.response.body.length; j++) {
       let userExists = false;
 
-      let userId = state.response.body[j].user_id;
+      let userId = state.response.body[j].person_id.split('|')[1];
       console.log(`Processing user: ${userId}.`);
 
       for (let i = 0; i < itemMatches.length; i++) {
@@ -33,8 +33,9 @@ get(
 
       if (!userExists) {
         const selectUserMatches = template.match(selectUserEx);
+        const msisdn = state.response.body[j].msisdn;
         const userItem =
-          `<item><label>${state.response.body[j].user_name}</label><value>${userId}</value></item>`;
+          `<item><label>${state.response.body[j].person_name}</label><value>${userId}_${msisdn}</value></item>`;
         console.log(`Adding user: ${userItem}.`);
         template = template.replace(
           selectUserEx,
