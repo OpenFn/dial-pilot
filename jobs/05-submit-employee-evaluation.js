@@ -5,6 +5,7 @@
 
 alterState(state => {
   state.payee = state.data.EvaluationForm;
+  state.saved_config = state.configuration;
   return state;
 });
 
