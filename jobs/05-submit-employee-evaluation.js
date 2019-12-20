@@ -46,6 +46,7 @@ post(
   },
   state => {
     const today = new Date();
+    console.log("State.data: "+state.data)
     state.data.person_payment = {
       'form[person_payments][0][0][fields][id]': 'person_payments|0',
       'form[person_payments][0][0][fields][parent]':
