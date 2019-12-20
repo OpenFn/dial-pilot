@@ -3,10 +3,12 @@
 // @adaptor 'http'
 // -----------------------------------------------------------------------------
 
-console.log(state.data);
+console.log(state.data.EvaluationForm);
 // Calculate the bonus payment - for now, make it 100*the number of clients seen
-const bonus_amount = state.data.clients;
-/*
+const bonus_amount = state.data.EvaluationForm.client_counts*100;
+const person_id = state.data.EvaluationForm.social_worker_id.split('_')[0];
+const msisdn = state.data.EvaluationForm.social_worker_id.split('_')[1];
+
 post(
   `${state.configuration.mifosUrl}/channel/transactions`,
   {
@@ -26,7 +28,7 @@ post(
         payee: {
           partyIdInfo: {
             partyIdType: 'MSISDN',
-            partyIdentifier: state.data.msisdn,
+            partyIdentifier: msisdn,
           },
         },
         amountType: 'SEND',
@@ -44,11 +46,10 @@ post(
   },
   state => {
     const today = new Date();
-    const currPayee = state.references[0];
     state.data.person_payment = {
       'form[person_payments][0][0][fields][id]': 'person_payments|0',
       'form[person_payments][0][0][fields][parent]':
-        'person|' + currPayee.person_id,
+        'person|' + person_id,
       'form[person_payments][0][0][fields][date][day]': today.getDate(),
       'form[person_payments][0][0][fields][date][month]':
         today.getMonth() + 1,
@@ -83,5 +84,5 @@ post(
       })
     )(state);
   }
-);*/
+);
 
