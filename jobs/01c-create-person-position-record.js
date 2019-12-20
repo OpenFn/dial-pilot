@@ -1,10 +1,10 @@
 // Pluck out parts of the ODK submission and prepare our 'person_postion' object that we
 // will use in multiple requests to iHRIS. =====================================
 alterState(state => {
-  console.log(state.data);
+  console.log(state);
   // The position field in the form holds the position ID and the salary
-  const positionData = state.data.RegistrationForm.position.split('_');
-  const startDateComponents = state.data.RegistrationForm.start_date.split('-')
+  const positionData = state.references[0].RegistrationForm.position.split('_');
+  const startDateComponents = state.references[0].RegistrationForm.start_date.split('-')
   state.person_position = {
     'form[person_position][0][0][fields][id]': 'person_position|0',
     'form[person_position][0][0][fields][parent]': state.data.person_id,
@@ -17,8 +17,8 @@ alterState(state => {
   };
   state.person_contact = {
     'form[person_contact_personal][0][0][fields][id]': 'person_contact_personal|0',
-    'form[person_contact_personal][0][0][fields][parent]': state.data.person_id,
-    'form[person_contact_personal][0][0][fields][mobile_phone]': state.data.RegistrationForm.phone_number,
+    'form[person_contact_personal][0][0][fields][parent]': state.references[0].person_id,
+    'form[person_contact_personal][0][0][fields][mobile_phone]': state.references[0].RegistrationForm.phone_number,
     'contact_type': 'personal',
   };
   return state;
