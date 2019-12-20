@@ -1,6 +1,7 @@
 sqlString(state => {
   // The person information is in state from the previous operation
-  return (
+  console.log(state.data)
+ /* return (
     `SELECT id FROM hippo_person WHERE firstname='` +
     state.data.RegistrationForm.first_name +
     `' AND othername='` +
@@ -8,7 +9,7 @@ sqlString(state => {
     `' AND surname='` +
     state.data.RegistrationForm.last_name +
     `'`
-  );
+  );*/
 });
 
 //alterState(state => {
