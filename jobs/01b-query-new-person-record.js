@@ -14,7 +14,6 @@ sqlString(state => {
 
 alterState(state => {
   // Note: we pluck out on the 'RowDataResponses' from the SQL server.
-  console.log(state)
   const personData = state.response.body;
   console.log(personData);
   // Get the first record
