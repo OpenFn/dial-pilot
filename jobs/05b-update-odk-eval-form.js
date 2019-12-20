@@ -1,4 +1,7 @@
 // Your job goes here.
+alterState(state => {
+  console.log(state.response);
+});
 get(
   'http://167.71.88.252/formXml',
   {
