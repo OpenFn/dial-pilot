@@ -1,7 +1,4 @@
 // Your job goes here.
-alterState(state => {
-  console.log(state.response);
-});
 get(
   'http://167.71.88.252/formXml',
   {
@@ -13,7 +10,7 @@ get(
     let template = state.data.body;
     let templateUpdated = false;
 
-    console.log(state.response.body)
+    console.log(state.new_employees)
 
     const itemEx = /<item>\s?<label>[^<>]*<\/label>\s?<value>[^<>]*<\/value>\s?<\/item>/gi;
     const itemMatches = template.match(itemEx);
