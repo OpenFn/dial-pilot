@@ -1,6 +1,7 @@
 // Pluck out parts of the ODK submission and prepare our 'person_postion' object that we
 // will use in multiple requests to iHRIS. =====================================
 alterState(state => {
+  console.log(state.data);
   // The position field in the form holds the position ID and the salary
   const positionData = state.data.RegistrationForm.position.split('_');
   const startDateComponents = state.data.RegistrationForm.start_date.split('-')
