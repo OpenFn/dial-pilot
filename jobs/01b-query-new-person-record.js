@@ -1,15 +1,15 @@
 sqlString(state => {
   // The person information is in state from the previous operation
-  console.log(state)
- /* return (
+  console.log(state.references[0].RegistrationForm)
+  return (
     `SELECT id FROM hippo_person WHERE firstname='` +
-    state.data.RegistrationForm.first_name +
+    state.references[0].RegistrationForm.first_name +
     `' AND othername='` +
-    state.data.RegistrationForm.middle_name +
+    state.references[0].RegistrationForm.middle_name +
     `' AND surname='` +
-    state.data.RegistrationForm.last_name +
+    state.references[0].RegistrationForm.last_name +
     `'`
-  );*/
+  );
 });
 
 //alterState(state => {
