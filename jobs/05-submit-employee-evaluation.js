@@ -3,11 +3,10 @@
 // @adaptor 'http'
 // -----------------------------------------------------------------------------
 
-console.log(state.data.EvaluationForm);
-// Calculate the bonus payment - for now, make it 100*the number of clients seen
-state.bonus_amount = state.data.EvaluationForm.client_counts*100;
-state.person_id = state.data.EvaluationForm.social_worker_id.split('_')[0];
-state.msisdn = state.data.EvaluationForm.social_worker_id.split('_')[1];
+alterState(state => {
+  state.data = { payee: state.data.EvaluationForm };
+  return state;
+});
 
 post(
   `${state.configuration.mifosUrl}/channel/transactions`,
@@ -28,7 +27,7 @@ post(
         payee: {
           partyIdInfo: {
             partyIdType: 'MSISDN',
-            partyIdentifier: state.msisdn,
+            partyIdentifier: state.data.payee.social_worker_id.split('_')[1],
           },
         },
         amountType: 'SEND',
@@ -39,7 +38,8 @@ post(
         },
         amount: {
           currency: 'USD',
-          amount: state.bonus_amount,
+          // Calculate the bonus amount - for now just use number of clients seen * 100
+          amount: state.data.payee.client_counts*100,
         },
       };
     },
@@ -49,12 +49,12 @@ post(
     state.data.person_payment = {
       'form[person_payments][0][0][fields][id]': 'person_payments|0',
       'form[person_payments][0][0][fields][parent]':
-        'person|' + state.person_id,
+        'person|' + state.data.payee.social_worker_id.split('_')[1],
       'form[person_payments][0][0][fields][date][day]': today.getDate(),
       'form[person_payments][0][0][fields][date][month]':
         today.getMonth() + 1,
       'form[person_payments][0][0][fields][date][year]': today.getFullYear(),
-      'form[person_payments][0][0][fields][amount]': state.bonus_amount,
+      'form[person_payments][0][0][fields][amount]': state.data.payee.client_counts*100,
       'form[person_payments][0][0][fields][transactionId]':
         state.data.body.transactionId,
       'form[person_payments][0][0][fields][status]':
