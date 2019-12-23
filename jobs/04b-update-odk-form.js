@@ -40,6 +40,7 @@ get(
           if (state.new_jobs[j].status === 'CLOSED') {
             console.log(`Removing closed position: ${positionId}.`);
             template = template.replace(itemMatches[i], '');
+            templateUpdated = true;
           }
           positionExists = true;
         }
