@@ -25,7 +25,7 @@ each(
       authentication: state.configuration.mifosAuth,
       headers: {
         'content-type': 'application/json',
-        'X-Tenant-Identifier': 'tn03',
+        'X-Tenant-Identifier': 'tn07',
       },
       // Can we send an array of payments to make in a single request?
       // body: state.data.registrants.map(r => {
