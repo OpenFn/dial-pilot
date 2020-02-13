@@ -1,6 +1,6 @@
 // Your job goes here.
 get(
-  'http://64.225.13.44/formXml',
+  'http://165.227.185.106/formXml',
   {
     query: {
       formId: 'registration_form',
@@ -88,7 +88,7 @@ get(
   }
 );
 
-post('http://64.225.13.44/formUpload', {
+post('http://165.227.185.106/formUpload', {
   formData: state => {
     return {
       form_def_file: {
