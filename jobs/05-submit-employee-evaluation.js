@@ -15,14 +15,14 @@ post(
     authentication: state.configuration.mifosAuth,
     headers: {
       'content-type': 'application/json',
-      'X-Tenant-Identifier': 'tn03',
+      'X-Tenant-Identifier': 'tn07',
     },
     body: state => {
       return {
         payer: {
           partyIdInfo: {
             partyIdType: 'MSISDN',
-            partyIdentifier: '27710203999',
+            partyIdentifier: '27710407990',
           },
         },
         payee: {
