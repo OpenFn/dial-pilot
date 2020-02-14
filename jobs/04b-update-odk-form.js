@@ -15,10 +15,10 @@ get(
     const itemEx = /<item>\s?<label>[^<>]*<\/label>\s?<value>[^<>]*<\/value>\s?<\/item>/gi;
     const itemMatches = template.match(itemEx);
 
-    //const selectFacilityEx = /<select1\s+ref="\/RegistrationForm\/position_facility">/gi;
-    const selectFacilityEx = /<select1\s+ref="\/data\/position_facility">/gi;
-    //const selectPositionEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
-    const selectPositionEx = /<select1\s+ref="\/data\/position">/gi;
+    const selectFacilityEx = /<select1\s+ref="\/RegistrationForm\/position_facility">/gi;
+    //const selectFacilityEx = /<select1\s+ref="\/data\/position_facility">/gi;
+    const selectPositionEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
+    //const selectPositionEx = /<select1\s+ref="\/data\/position">/gi;
 
     console.log(`Received ${state.new_jobs.length} new data!`);
 
