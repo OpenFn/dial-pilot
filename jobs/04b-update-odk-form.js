@@ -48,6 +48,7 @@ get(
 
       if (!facilityExists) {
         const selectFacilityMatches = template.match(selectFacilityEx);
+        console.log("Facility matches: "+selectFacilityMatches)
         const facilityItem = 
           `<item><label>${state.new_jobs[j].facility_name}</label><value>${facilityId}</value></item>`;
         console.log(`Adding facility: ${facilityItem}.`);
