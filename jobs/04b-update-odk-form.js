@@ -17,7 +17,8 @@ get(
 
     //const selectFacilityEx = /<select1\s+ref="\/RegistrationForm\/position_facility">/gi;
     const selectFacilityEx = /<select1\s+ref="\/data\/position_facility">/gi;
-    const selectPositionEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
+    //const selectPositionEx = /<select1\s+ref="\/RegistrationForm\/position">/gi;
+    const selectPositionEx = /<select1\s+ref="\/data\/position">/gi;
 
     console.log(`Received ${state.new_jobs.length} new data!`);
 
