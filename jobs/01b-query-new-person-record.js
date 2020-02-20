@@ -4,8 +4,6 @@ sqlString(state => {
   return (
     `SELECT id FROM hippo_person WHERE firstname='` +
     state.references[0].RegistrationForm.first_name +
-    `' AND othername='` +
-    state.references[0].RegistrationForm.middle_name +
     `' AND surname='` +
     state.references[0].RegistrationForm.last_name +
     `'`
