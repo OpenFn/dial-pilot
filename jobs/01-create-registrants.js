@@ -13,7 +13,6 @@ alterState(state => {
     'form[person][0][0][fields][id]': 'person|0',
     'form[person][0][0][fields][surname]': state.data.RegistrationForm.last_name,
     'form[person][0][0][fields][firstname]': state.data.RegistrationForm.first_name,
-    'form[person][0][0][fields][othername]': 'a',
     'form[person][0][0][fields][nationality]': `country|${state.data.RegistrationForm.country}`,
     'form[person][0][0][fields][residence]': 'district|3',
   };
